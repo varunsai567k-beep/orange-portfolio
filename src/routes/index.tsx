@@ -113,13 +113,13 @@ function Index() {
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {services.map((s) => (
-              <div key={s.title} className="group relative rounded-2xl border border-border bg-surface p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-card">
+              <Link key={s.title} to={s.to} className="group relative rounded-2xl border border-border bg-surface p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-card block">
                 <div className="size-12 rounded-xl bg-gradient-primary grid place-items-center text-primary-foreground mb-5 shadow-glow">
                   <s.icon className="size-6" />
                 </div>
-                <h3 className="font-display text-xl font-semibold mb-2">{s.title}</h3>
+                <h3 className="font-display text-xl font-semibold mb-2 flex items-center gap-2">{s.title} <ArrowRight className="size-4 transition group-hover:translate-x-1" /></h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
