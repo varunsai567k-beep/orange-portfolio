@@ -77,8 +77,8 @@ function Index() {
             </a>
           </div>
           <div className="mt-16 flex flex-wrap gap-x-12 gap-y-4 text-sm text-muted-foreground">
-            <div><span className="text-foreground font-display text-2xl font-bold">200+</span> <br />Projects delivered</div>
-            <div><span className="text-foreground font-display text-2xl font-bold">40M+</span> <br />Views generated</div>
+            <div><span className="text-foreground font-display text-2xl font-bold">10</span> <br />Projects delivered</div>
+            <div><span className="text-foreground font-display text-2xl font-bold">20k</span> <br />Views generated</div>
             <div><span className="text-foreground font-display text-2xl font-bold">24h</span> <br />Avg turnaround</div>
           </div>
         </div>
