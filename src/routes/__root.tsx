@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "orange-ka-baap" },
+      { name: "description", content: "hi im orange and this is my portfolio" },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "orange-ka-baap" },
+      { property: "og:description", content: "hi im orange and this is my portfolio" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "orange-ka-baap" },
+      { name: "twitter:description", content: "hi im orange and this is my portfolio" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/F735t1UaG0bJakrgVXzbkd1j4nm1/social-images/social-1781443980980-range.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/F735t1UaG0bJakrgVXzbkd1j4nm1/social-images/social-1781443980980-range.webp" },
     ],
     links: [
       {
