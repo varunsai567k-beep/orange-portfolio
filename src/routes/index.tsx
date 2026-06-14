@@ -18,9 +18,9 @@ export const Route = createFileRoute("/")({
 });
 
 const services = [
-  { icon: Gamepad2, title: "Gaming Edits", desc: "Fast-paced montages, highlights, and viral clips with rhythm-locked cuts." },
-  { icon: Film, title: "Cinematic Reels", desc: "Story-driven color grading, sound design, and motion for films and brands." },
-  { icon: Megaphone, title: "Advertisements", desc: "Conversion-focused ads built for the scroll — TikTok, Reels, YouTube." },
+  { icon: Gamepad2, title: "Gaming Edits", desc: "Fast-paced montages, highlights, and viral clips with rhythm-locked cuts.", to: "/work/gaming" as const },
+  { icon: Film, title: "Cinematic Reels", desc: "Story-driven color grading, sound design, and motion for films and brands.", to: "/work/cinematic" as const },
+  { icon: Megaphone, title: "Advertisements", desc: "Conversion-focused ads built for the scroll — TikTok, Reels, YouTube.", to: "/work/ads" as const },
 ];
 
 const work = [
