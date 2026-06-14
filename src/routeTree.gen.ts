@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WorkGamingRouteImport } from './routes/work.gaming'
+import { Route as WorkCinematicRouteImport } from './routes/work.cinematic'
+import { Route as WorkAdsRouteImport } from './routes/work.ads'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkGamingRoute = WorkGamingRouteImport.update({
+  id: '/work/gaming',
+  path: '/work/gaming',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkCinematicRoute = WorkCinematicRouteImport.update({
+  id: '/work/cinematic',
+  path: '/work/cinematic',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkAdsRoute = WorkAdsRouteImport.update({
+  id: '/work/ads',
+  path: '/work/ads',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/work/ads': typeof WorkAdsRoute
+  '/work/cinematic': typeof WorkCinematicRoute
+  '/work/gaming': typeof WorkGamingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/work/ads': typeof WorkAdsRoute
+  '/work/cinematic': typeof WorkCinematicRoute
+  '/work/gaming': typeof WorkGamingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/work/ads': typeof WorkAdsRoute
+  '/work/cinematic': typeof WorkCinematicRoute
+  '/work/gaming': typeof WorkGamingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/work/ads' | '/work/cinematic' | '/work/gaming'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/work/ads' | '/work/cinematic' | '/work/gaming'
+  id: '__root__' | '/' | '/work/ads' | '/work/cinematic' | '/work/gaming'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  WorkAdsRoute: typeof WorkAdsRoute
+  WorkCinematicRoute: typeof WorkCinematicRoute
+  WorkGamingRoute: typeof WorkGamingRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work/gaming': {
+      id: '/work/gaming'
+      path: '/work/gaming'
+      fullPath: '/work/gaming'
+      preLoaderRoute: typeof WorkGamingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/cinematic': {
+      id: '/work/cinematic'
+      path: '/work/cinematic'
+      fullPath: '/work/cinematic'
+      preLoaderRoute: typeof WorkCinematicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/ads': {
+      id: '/work/ads'
+      path: '/work/ads'
+      fullPath: '/work/ads'
+      preLoaderRoute: typeof WorkAdsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  WorkAdsRoute: WorkAdsRoute,
+  WorkCinematicRoute: WorkCinematicRoute,
+  WorkGamingRoute: WorkGamingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
