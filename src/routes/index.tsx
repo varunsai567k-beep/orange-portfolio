@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Play, Mail, Instagram, Youtube, Twitter, ArrowRight, Film, Gamepad2, Megaphone, Sparkles } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Play, Mail, Instagram, Youtube, Twitter, ArrowRight, Film, Gamepad2, Megaphone } from "lucide-react";
 import heroImg from "@/assets/hero-gaming.jpg";
 import workGaming from "@/assets/work-gaming.jpg";
 import workCinematic from "@/assets/work-cinematic.jpg";
@@ -9,9 +9,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Orange Edits — Video Editor for Gaming, Cinematic & Ads" },
-      { name: "description", content: "Orange Edits — fast-paced gaming montages, cinematic reels, advertisements, and short-form content edited with precision and style." },
+      { name: "description", content: "Orange Edits — fast-paced gaming montages, cinematic reels, and scroll-stopping ads edited with precision and style." },
       { property: "og:title", content: "Orange Edits — Video Editor" },
-      { property: "og:description", content: "Gaming • Cinematic • Ads • Short Form Content" },
+      { property: "og:description", content: "Gaming • Cinematic • Ads" },
     ],
   }),
   component: Index,
@@ -21,13 +21,12 @@ const services = [
   { icon: Gamepad2, title: "Gaming Edits", desc: "Fast-paced montages, highlights, and viral clips with rhythm-locked cuts." },
   { icon: Film, title: "Cinematic Reels", desc: "Story-driven color grading, sound design, and motion for films and brands." },
   { icon: Megaphone, title: "Advertisements", desc: "Conversion-focused ads built for the scroll — TikTok, Reels, YouTube." },
-  { icon: Sparkles, title: "Short Form", desc: "Hook-first vertical edits engineered for retention and reach." },
 ];
 
 const work = [
-  { img: workGaming, title: "Gaming Edit", tag: "Montage" },
-  { img: workCinematic, title: "Cinematic Reel", tag: "Short Film" },
-  { img: workAd, title: "Advertisement Edit", tag: "Commercial" },
+  { img: workGaming, title: "Gaming Edit", tag: "Montage", to: "/work/gaming" as const },
+  { img: workCinematic, title: "Cinematic Reel", tag: "Short Film", to: "/work/cinematic" as const },
+  { img: workAd, title: "Advertisement Edit", tag: "Commercial", to: "/work/ads" as const },
 ];
 
 function Index() {
@@ -90,7 +89,7 @@ function Index() {
         <div className="flex gap-12 whitespace-nowrap animate-[scroll_30s_linear_infinite] text-muted-foreground font-display text-xl">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex gap-12 shrink-0">
-              {["Gaming", "Cinematic", "Advertisements", "Short Form", "Color Grading", "Sound Design", "Motion Graphics"].map((t) => (
+              {["Gaming", "Cinematic", "Advertisements", "Color Grading", "Sound Design", "Motion Graphics"].map((t) => (
                 <span key={t} className="flex items-center gap-12">
                   {t} <span className="text-primary">✦</span>
                 </span>
@@ -112,7 +111,7 @@ function Index() {
             </div>
             <p className="text-muted-foreground max-w-md">From the first frame to the final export — I handle pacing, color, sound, and the little details that keep eyes glued.</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid md:grid-cols-3 gap-5">
             {services.map((s) => (
               <div key={s.title} className="group relative rounded-2xl border border-border bg-surface p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-card">
                 <div className="size-12 rounded-xl bg-gradient-primary grid place-items-center text-primary-foreground mb-5 shadow-glow">
@@ -141,7 +140,11 @@ function Index() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {work.map((w, i) => (
-              <article key={w.title} className={`group relative overflow-hidden rounded-2xl border border-border bg-surface aspect-[4/5] ${i === 0 ? "lg:row-span-2 lg:aspect-[4/5.2]" : ""}`}>
+              <Link
+                key={w.title}
+                to={w.to}
+                className={`group relative overflow-hidden rounded-2xl border border-border bg-surface aspect-[4/5] block ${i === 0 ? "lg:row-span-2 lg:aspect-[4/5.2]" : ""}`}
+              >
                 <img src={w.img} alt={w.title} loading="lazy" width={960} height={640} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
                 <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition">
@@ -151,9 +154,11 @@ function Index() {
                 </div>
                 <div className="absolute bottom-0 inset-x-0 p-6">
                   <span className="text-xs uppercase tracking-widest text-primary font-medium">{w.tag}</span>
-                  <h3 className="font-display text-2xl font-bold mt-1">{w.title}</h3>
+                  <h3 className="font-display text-2xl font-bold mt-1 flex items-center gap-2">
+                    {w.title} <ArrowRight className="size-5 transition group-hover:translate-x-1" />
+                  </h3>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
