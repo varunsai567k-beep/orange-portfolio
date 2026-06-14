@@ -89,7 +89,7 @@ function Index() {
         <div className="flex gap-12 whitespace-nowrap animate-[scroll_30s_linear_infinite] text-muted-foreground font-display text-xl">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex gap-12 shrink-0">
-              {["Gaming", "Cinematic", "Advertisements", "Color Grading", "Sound Design", "Motion Graphics"].map((t) => (
+              {["Gaming", "Cinematic", "Advertisements", "Sound Design", "Motion Graphics"].map((t) => (
                 <span key={t} className="flex items-center gap-12">
                   {t} <span className="text-primary">✦</span>
                 </span>
