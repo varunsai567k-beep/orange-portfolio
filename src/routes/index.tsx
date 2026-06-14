@@ -137,16 +137,17 @@ function Index() {
           <p className="mt-6 text-muted-foreground max-w-xl mx-auto relative">
             Got a project in mind? Drop me a line and I'll get back within 24 hours.
           </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4 relative">
-            <a href="mailto:hello@orangeedits.com" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition">
-              <Mail className="size-4" /> hello@orangeedits.com
-            </a>
-            <div className="flex items-center gap-2">
-              {[Instagram, Youtube, Twitter].map((Icon, i) => (
-                <a key={i} href="#" className="size-11 grid place-items-center rounded-full border border-border hover:border-primary/50 hover:text-primary transition">
-                  <Icon className="size-4" />
-                </a>
-              ))}
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 relative">
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <a href="https://discord.gg/peuquP4ug" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition">
+                Join my Discord <ArrowRight className="size-4" />
+              </a>
+              <a href="tel:7075254541" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:bg-background/40 transition">
+                <Phone className="size-4" /> 707-525-4541
+              </a>
+              <a href="https://instagram.com/Orange_playez" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:bg-background/40 transition">
+                <Instagram className="size-4" /> @Orange_playez
+              </a>
             </div>
           </div>
         </div>
