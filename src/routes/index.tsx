@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Play, Mail, Instagram, Youtube, Twitter, ArrowRight, Film, Gamepad2, Megaphone } from "lucide-react";
+import { Play, Instagram, ArrowRight, Film, Gamepad2, Megaphone, Phone } from "lucide-react";
 import heroImg from "@/assets/hero-gaming.jpg";
 import workGaming from "@/assets/work-gaming.jpg";
 import workCinematic from "@/assets/work-cinematic.jpg";
