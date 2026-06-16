@@ -4,9 +4,11 @@ import { ArrowLeft, Play } from "lucide-react";
 export interface VideoItem {
   title: string;
   desc: string;
-  thumb: string;
+  thumb?: string;
+  video?: string;
   duration?: string;
 }
+
 
 export function CategoryPage({
   category,
