@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CategoryPage } from "@/components/CategoryPage";
 import thumb from "@/assets/work-ad.jpg";
+import demoReel from "@/assets/videos/demo-reel.mp4.asset.json";
+import projectMeme from "@/assets/videos/project-meme.mp4.asset.json";
 
 export const Route = createFileRoute("/work/ads")({
   head: () => ({
@@ -21,6 +23,8 @@ const videos = [
   { title: "DTC Apparel Ad", desc: "Lookbook-meets-conversion with split-screen FX.", thumb, duration: "0:22" },
   { title: "SaaS Explainer", desc: "Motion graphics + screencast hybrid.", thumb, duration: "1:10" },
   { title: "Beverage Hero Spot", desc: "High-speed product hero with sound design.", thumb, duration: "0:30" },
+  { title: "Demo Reel", desc: "Showcase of recent gaming edits.", video: demoReel.url },
+  { title: "Project Meme", desc: "Funny moments + meme edit.", video: projectMeme.url },
 ];
 
 function AdsPage() {

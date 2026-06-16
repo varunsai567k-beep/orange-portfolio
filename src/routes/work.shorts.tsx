@@ -2,16 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CategoryPage } from "@/components/CategoryPage";
 import thumb from "@/assets/work-cinematic.jpg";
 
-export const Route = createFileRoute("/work/cinematic")({
+export const Route = createFileRoute("/work/shorts")({
   head: () => ({
     meta: [
-      { title: "Cinematic Reels — Orange Edits" },
-      { name: "description", content: "Story-driven cinematic reels, color grading, and sound design by Orange Edits." },
-      { property: "og:title", content: "Cinematic Reels — Orange Edits" },
-      { property: "og:description", content: "Cinematic shorts, color, and sound." },
+      { title: "Shorts — Orange Edits" },
+      { name: "description", content: "Short-form edits for TikTok, Reels, and YouTube Shorts by Orange Edits." },
+      { property: "og:title", content: "Shorts — Orange Edits" },
+      { property: "og:description", content: "Short-form edits built for the scroll." },
     ],
   }),
-  component: CinematicPage,
+  component: ShortsPage,
 });
 
 const videos = [
@@ -23,12 +23,12 @@ const videos = [
   { title: "Music Video Edit", desc: "Sync-locked cuts with light leaks and grain.", thumb, duration: "3:30" },
 ];
 
-function CinematicPage() {
+function ShortsPage() {
   return (
     <CategoryPage
-      category="Cinematic Reels"
-      title="Cinematic."
-      description="Story-driven films and reels with deliberate pacing, custom color grades, and immersive sound design."
+      category="Shorts"
+      title="Shorts."
+      description="Fast, punchy short-form content built for TikTok, Reels, and YouTube Shorts — cut to trend and optimized for retention."
       videos={videos}
     />
   );

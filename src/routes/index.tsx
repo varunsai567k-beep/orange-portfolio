@@ -2,16 +2,16 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Play, Instagram, ArrowRight, Film, Gamepad2, Megaphone, Phone } from "lucide-react";
 import heroImg from "@/assets/hero-gaming.jpg";
 import workGaming from "@/assets/work-gaming.jpg";
-import workCinematic from "@/assets/work-cinematic.jpg";
+import workShorts from "@/assets/work-cinematic.jpg";
 import workAd from "@/assets/work-ad.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Orange Edits — Video Editor for Gaming, Cinematic & Ads" },
-      { name: "description", content: "Orange Edits — fast-paced gaming montages, cinematic reels, and scroll-stopping ads edited with precision and style." },
+      { title: "Orange Edits — Video Editor for Gaming, Shorts & Ads" },
+      { name: "description", content: "Orange Edits — fast-paced gaming montages, short-form content, and scroll-stopping ads edited with precision and style." },
       { property: "og:title", content: "Orange Edits — Video Editor" },
-      { property: "og:description", content: "Gaming • Cinematic • Ads" },
+      { property: "og:description", content: "Gaming • Shorts • Ads" },
     ],
   }),
   component: Index,
@@ -19,13 +19,13 @@ export const Route = createFileRoute("/")({
 
 const services = [
   { icon: Gamepad2, title: "Gaming Edits", desc: "Fast-paced montages, highlights, and viral clips with rhythm-locked cuts.", to: "/work/gaming" as const },
-  { icon: Film, title: "Cinematic Reels", desc: "Story-driven color grading, sound design, and motion for films and brands.", to: "/work/cinematic" as const },
+  { icon: Film, title: "Shorts", desc: "Fast, punchy short-form content built for TikTok, Reels, and YouTube Shorts.", to: "/work/shorts" as const },
   { icon: Megaphone, title: "Advertisements", desc: "Conversion-focused ads built for the scroll — TikTok, Reels, YouTube.", to: "/work/ads" as const },
 ];
 
 const work = [
   { img: workGaming, title: "Gaming Edit", tag: "Montage", to: "/work/gaming" as const },
-  { img: workCinematic, title: "Cinematic Reel", tag: "Short Film", to: "/work/cinematic" as const },
+  { img: workShorts, title: "Shorts", tag: "Short Form", to: "/work/shorts" as const },
   { img: workAd, title: "Advertisement Edit", tag: "Commercial", to: "/work/ads" as const },
 ];
 
@@ -66,7 +66,7 @@ function Index() {
             <span className="text-gradient">harder.</span> Stay longer.
           </h1>
           <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl">
-            I'm a video editor crafting fast-paced gaming montages, cinematic reels, and scroll-stopping ads. Stories cut with precision — and a little fire.
+            I'm a video editor crafting fast-paced gaming montages, short-form content, and scroll-stopping ads. Stories cut with precision — and a little fire.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <a href="#work" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition">
@@ -89,7 +89,7 @@ function Index() {
         <div className="flex gap-12 whitespace-nowrap animate-[scroll_30s_linear_infinite] text-muted-foreground font-display text-xl">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex gap-12 shrink-0">
-              {["Gaming", "Cinematic", "Advertisements", "Sound Design", "Motion Graphics"].map((t) => (
+              {["Gaming", "Shorts", "Advertisements", "Sound Design", "Motion Graphics"].map((t) => (
                 <span key={t} className="flex items-center gap-12">
                   {t} <span className="text-primary">✦</span>
                 </span>
