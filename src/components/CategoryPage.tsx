@@ -4,9 +4,11 @@ import { ArrowLeft, Play } from "lucide-react";
 export interface VideoItem {
   title: string;
   desc: string;
-  thumb: string;
+  thumb?: string;
+  video?: string;
   duration?: string;
 }
+
 
 export function CategoryPage({
   category,
@@ -46,25 +48,42 @@ export function CategoryPage({
       <section className="pb-28 px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {videos.map((v) => (
-            <article key={v.title} className="group relative overflow-hidden rounded-2xl border border-border bg-surface aspect-video md:aspect-[4/5] cursor-pointer hover:border-primary/50 hover:shadow-card transition-all">
-              <img src={v.thumb} alt={v.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-              <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition">
-                <div className="size-16 rounded-full bg-gradient-primary grid place-items-center shadow-glow">
-                  <Play className="size-7 fill-primary-foreground text-primary-foreground" />
-                </div>
+            <div key={v.title} className="flex flex-col gap-3">
+              <article className="group relative overflow-hidden rounded-2xl border border-border bg-surface aspect-video md:aspect-[4/5] hover:border-primary/50 hover:shadow-card transition-all">
+                {v.video ? (
+                  <video
+                    src={v.video}
+                    poster={v.thumb}
+                    controls
+                    preload="metadata"
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover bg-black"
+                  />
+                ) : (
+                  <>
+                    <img src={v.thumb} alt={v.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                    <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition">
+                      <div className="size-16 rounded-full bg-gradient-primary grid place-items-center shadow-glow">
+                        <Play className="size-7 fill-primary-foreground text-primary-foreground" />
+                      </div>
+                    </div>
+                  </>
+                )}
+                {v.duration && (
+                  <span className="absolute top-4 right-4 rounded-full bg-background/70 backdrop-blur px-2.5 py-1 text-xs font-medium z-10">
+                    {v.duration}
+                  </span>
+                )}
+              </article>
+              <div className="px-1">
+                <h3 className="font-display text-lg font-bold">{v.title}</h3>
+                {v.desc && <p className="text-sm text-muted-foreground mt-0.5">{v.desc}</p>}
               </div>
-              {v.duration && (
-                <span className="absolute top-4 right-4 rounded-full bg-background/70 backdrop-blur px-2.5 py-1 text-xs font-medium">
-                  {v.duration}
-                </span>
-              )}
-              <div className="absolute bottom-0 inset-x-0 p-5">
-                <h3 className="font-display text-xl font-bold">{v.title}</h3>
-                <p className="text-sm text-muted-foreground mt-1">{v.desc}</p>
-              </div>
-            </article>
+            </div>
           ))}
+
+
         </div>
       </section>
 

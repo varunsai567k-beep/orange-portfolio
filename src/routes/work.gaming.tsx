@@ -1,6 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CategoryPage } from "@/components/CategoryPage";
-import thumb from "@/assets/work-gaming.jpg";
+import vid1 from "@/assets/videos/vid1.mp4.asset.json";
+import demoReel from "@/assets/videos/demo-reel.mp4.asset.json";
+import demo from "@/assets/videos/demo.mp4.asset.json";
+import minecraft from "@/assets/videos/demo-minecraft-reel.mp4.asset.json";
+import short from "@/assets/videos/short.mp4.asset.json";
+import projectMeme from "@/assets/videos/project-meme.mp4.asset.json";
 
 export const Route = createFileRoute("/work/gaming")({
   head: () => ({
@@ -15,12 +20,12 @@ export const Route = createFileRoute("/work/gaming")({
 });
 
 const videos = [
-  { title: "Valorant Ace Montage", desc: "60-second highlight reel with sync cuts.", thumb, duration: "1:02" },
-  { title: "Apex Legends Frags", desc: "Multi-team takedowns with beat drops.", thumb, duration: "2:14" },
-  { title: "Fortnite Funny Moments", desc: "Comedic timing edit with SFX layering.", thumb, duration: "3:48" },
-  { title: "CS2 Pro Highlights", desc: "Tournament recap with cinematic intro.", thumb, duration: "4:21" },
-  { title: "Warzone Squad Wipe", desc: "Slow-mo dramatic plays edit.", thumb, duration: "1:55" },
-  { title: "League of Legends Pentakill", desc: "Hype montage with anime-style FX.", thumb, duration: "2:33" },
+  { title: "Vid 1", desc: "Quick-cut gaming highlight.", video: vid1.url },
+  { title: "Demo Reel", desc: "Showcase of recent gaming edits.", video: demoReel.url },
+  { title: "Demo", desc: "Action-packed gameplay edit.", video: demo.url },
+  { title: "Minecraft Demo Reel", desc: "Cinematic Minecraft moments.", video: minecraft.url },
+  { title: "Short", desc: "Short-form vertical edit.", video: short.url },
+  { title: "Project Meme", desc: "Funny moments + meme edit.", video: projectMeme.url },
 ];
 
 function GamingPage() {
