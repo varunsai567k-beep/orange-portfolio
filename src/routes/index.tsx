@@ -59,50 +59,53 @@ function Index() {
           <img src={heroImg} alt="" width={1280} height={800} className="w-full h-full object-cover opacity-25" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
         </div>
-        <div className="max-w-6xl mx-auto">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-1.5 text-xs text-muted-foreground mb-8">
-            <span className="size-1.5 rounded-full bg-primary animate-pulse" />
-            Available for new projects — June 2026
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-[1fr_auto] gap-10 items-center">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-1.5 text-xs text-muted-foreground mb-8">
+              <span className="size-1.5 rounded-full bg-primary animate-pulse" />
+              Available for new projects — June 2026
+            </div>
+            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter">
+              Edits that hit <br />
+              <span className="text-gradient">harder.</span> Stay longer.
+            </h1>
+            <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl">
+              I'm a video editor crafting fast-paced gaming montages, short-form content, and scroll-stopping ads. Stories cut with precision — and a little fire.
+            </p>
+            <div className="mt-10 flex items-center gap-3">
+              <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition">
+                Start a project
+              </a>
+              <button
+                onClick={() => setShowVideo(!showVideo)}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-3 font-medium hover:bg-surface transition"
+              >
+                <Play className="size-4 fill-primary" /> Showreel
+              </button>
+            </div>
+            <div className="mt-16 flex flex-wrap gap-x-12 gap-y-4 text-sm text-muted-foreground">
+              <div><span className="text-foreground font-display text-2xl font-bold">10</span> <br />Projects delivered</div>
+              <div><span className="text-foreground font-display text-2xl font-bold">20k</span> <br />Views generated</div>
+              <div><span className="text-foreground font-display text-2xl font-bold">24h</span> <br />Avg turnaround</div>
+            </div>
           </div>
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter">
-            Edits that hit <br />
-            <span className="text-gradient">harder.</span> Stay longer.
-          </h1>
-          <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl">
-            I'm a video editor crafting fast-paced gaming montages, short-form content, and scroll-stopping ads. Stories cut with precision — and a little fire.
-          </p>
-          <div className="mt-10 flex items-center gap-3">
-            <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition">
-              Start a project
-            </a>
-            <button
-              onClick={() => setShowVideo(!showVideo)}
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-3 font-medium hover:bg-surface transition"
-            >
-              <Play className="size-4 fill-primary" /> Showreel
-            </button>
-            {showVideo && (
-              <div className="relative flex items-center">
-                <video
-                  src={showreel.url}
-                  controls
-                  autoPlay
-                  className="h-14 rounded-lg"
-                />
-                <button
-                  onClick={() => setShowVideo(false)}
-                  className="ml-2 p-1 rounded-full border border-border bg-surface/60 hover:bg-surface transition"
-                >
-                  <X className="size-4" />
-                </button>
-              </div>
-            )}
-          </div>
-          <div className="mt-16 flex flex-wrap gap-x-12 gap-y-4 text-sm text-muted-foreground">
-            <div><span className="text-foreground font-display text-2xl font-bold">10</span> <br />Projects delivered</div>
-            <div><span className="text-foreground font-display text-2xl font-bold">20k</span> <br />Views generated</div>
-            <div><span className="text-foreground font-display text-2xl font-bold">24h</span> <br />Avg turnaround</div>
-          </div>
+          {showVideo && (
+            <div className="relative lg:w-[380px] xl:w-[480px]">
+              <button
+                onClick={() => setShowVideo(false)}
+                className="absolute -top-3 -right-3 z-10 p-1.5 rounded-full border border-border bg-surface/80 backdrop-blur hover:bg-surface transition"
+                aria-label="Close showreel"
+              >
+                <X className="size-4" />
+              </button>
+              <video
+                src={showreel.url}
+                controls
+                autoPlay
+                className="w-full rounded-2xl border border-border shadow-card"
+              />
+            </div>
+          )}
         </div>
       </section>
 
