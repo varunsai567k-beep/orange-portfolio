@@ -4,6 +4,7 @@ import heroImg from "@/assets/hero-gaming.jpg";
 import workGaming from "@/assets/work-gaming.jpg";
 import workShorts from "@/assets/work-cinematic.jpg";
 import workAd from "@/assets/work-ad.jpg";
+import showreel from "@/assets/videos/showreel.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -69,7 +70,7 @@ function Index() {
             I'm a video editor crafting fast-paced gaming montages, short-form content, and scroll-stopping ads. Stories cut with precision — and a little fire.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a href="#work" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition">
+            <a href={showreel.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition">
               <Play className="size-4 fill-current" /> View Showreel
             </a>
             <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:bg-surface transition">
