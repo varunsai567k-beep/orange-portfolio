@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CategoryPage } from "@/components/CategoryPage";
 import demo from "@/assets/videos/demo.mp4.asset.json";
 import minecraft from "@/assets/videos/demo-minecraft-reel.mp4.asset.json";
+import vid1 from "@/assets/videos/vid1.mp4.asset.json";
 
 export const Route = createFileRoute("/work/gaming")({
   head: () => ({
@@ -18,6 +19,7 @@ export const Route = createFileRoute("/work/gaming")({
 const videos = [
   { title: "Demo", desc: "Action-packed gameplay edit.", video: demo.url },
   { title: "Minecraft Demo Reel", desc: "Cinematic Minecraft moments.", video: minecraft.url },
+  { title: "Vid 1", desc: "Quick-cut gaming highlight.", video: vid1.url },
 ];
 
 function GamingPage() {
