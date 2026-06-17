@@ -75,9 +75,28 @@ function Index() {
             <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition">
               Start a project
             </a>
-            <a href={showreel.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-3 font-medium hover:bg-surface transition">
+            <button
+              onClick={() => setShowVideo(!showVideo)}
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-3 font-medium hover:bg-surface transition"
+            >
               <Play className="size-4 fill-primary" /> Showreel
-            </a>
+            </button>
+            {showVideo && (
+              <div className="relative flex items-center">
+                <video
+                  src={showreel.url}
+                  controls
+                  autoPlay
+                  className="h-14 rounded-lg"
+                />
+                <button
+                  onClick={() => setShowVideo(false)}
+                  className="ml-2 p-1 rounded-full border border-border bg-surface/60 hover:bg-surface transition"
+                >
+                  <X className="size-4" />
+                </button>
+              </div>
+            )}
           </div>
           <div className="mt-16 flex flex-wrap gap-x-12 gap-y-4 text-sm text-muted-foreground">
             <div><span className="text-foreground font-display text-2xl font-bold">10</span> <br />Projects delivered</div>
