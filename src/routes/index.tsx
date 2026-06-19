@@ -67,7 +67,7 @@ function Index() {
               <span className="text-gradient">harder.</span> Stay longer.
             </h1>
             <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl">
-              I'm a video editor crafting fast-paced gaming montages, short-form content, and scroll-stopping ads. Stories cut with precision — and a little fire.
+              I'm a video editor crafting fast-paced gaming montages and scroll-stopping ads. Stories cut with precision — and a little fire.
             </p>
             <div className="mt-10 flex items-center gap-3">
               <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition">
