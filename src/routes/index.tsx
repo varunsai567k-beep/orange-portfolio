@@ -1,9 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Play, Instagram, ArrowRight, Film, Gamepad2, Megaphone, Phone, X } from "lucide-react";
+import { Play, Instagram, ArrowRight, Gamepad2, Megaphone, Phone, X } from "lucide-react";
 import { useState } from "react";
 import heroImg from "@/assets/hero-gaming.jpg";
 import workGaming from "@/assets/work-gaming.jpg";
-import workShorts from "@/assets/work-cinematic.jpg";
 import workAd from "@/assets/work-ad.jpg";
 import showreel from "@/assets/videos/showreel.mp4.asset.json";
 

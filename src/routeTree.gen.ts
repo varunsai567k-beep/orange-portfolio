@@ -10,30 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as WorkShortsRouteImport } from './routes/work.shorts'
-import { Route as WorkReelsRouteImport } from './routes/work.reels'
-import { Route as WorkPodcastRouteImport } from './routes/work.podcast'
 import { Route as WorkGamingRouteImport } from './routes/work.gaming'
 import { Route as WorkAdsRouteImport } from './routes/work.ads'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const WorkShortsRoute = WorkShortsRouteImport.update({
-  id: '/work/shorts',
-  path: '/work/shorts',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const WorkReelsRoute = WorkReelsRouteImport.update({
-  id: '/work/reels',
-  path: '/work/reels',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const WorkPodcastRoute = WorkPodcastRouteImport.update({
-  id: '/work/podcast',
-  path: '/work/podcast',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WorkGamingRoute = WorkGamingRouteImport.update({
@@ -51,61 +33,30 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/work/ads': typeof WorkAdsRoute
   '/work/gaming': typeof WorkGamingRoute
-  '/work/podcast': typeof WorkPodcastRoute
-  '/work/reels': typeof WorkReelsRoute
-  '/work/shorts': typeof WorkShortsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/work/ads': typeof WorkAdsRoute
   '/work/gaming': typeof WorkGamingRoute
-  '/work/podcast': typeof WorkPodcastRoute
-  '/work/reels': typeof WorkReelsRoute
-  '/work/shorts': typeof WorkShortsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/work/ads': typeof WorkAdsRoute
   '/work/gaming': typeof WorkGamingRoute
-  '/work/podcast': typeof WorkPodcastRoute
-  '/work/reels': typeof WorkReelsRoute
-  '/work/shorts': typeof WorkShortsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/work/ads'
-    | '/work/gaming'
-    | '/work/podcast'
-    | '/work/reels'
-    | '/work/shorts'
+  fullPaths: '/' | '/work/ads' | '/work/gaming'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/work/ads'
-    | '/work/gaming'
-    | '/work/podcast'
-    | '/work/reels'
-    | '/work/shorts'
-  id:
-    | '__root__'
-    | '/'
-    | '/work/ads'
-    | '/work/gaming'
-    | '/work/podcast'
-    | '/work/reels'
-    | '/work/shorts'
+  to: '/' | '/work/ads' | '/work/gaming'
+  id: '__root__' | '/' | '/work/ads' | '/work/gaming'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   WorkAdsRoute: typeof WorkAdsRoute
   WorkGamingRoute: typeof WorkGamingRoute
-  WorkPodcastRoute: typeof WorkPodcastRoute
-  WorkReelsRoute: typeof WorkReelsRoute
-  WorkShortsRoute: typeof WorkShortsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -115,27 +66,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/work/shorts': {
-      id: '/work/shorts'
-      path: '/work/shorts'
-      fullPath: '/work/shorts'
-      preLoaderRoute: typeof WorkShortsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/work/reels': {
-      id: '/work/reels'
-      path: '/work/reels'
-      fullPath: '/work/reels'
-      preLoaderRoute: typeof WorkReelsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/work/podcast': {
-      id: '/work/podcast'
-      path: '/work/podcast'
-      fullPath: '/work/podcast'
-      preLoaderRoute: typeof WorkPodcastRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/work/gaming': {
@@ -159,10 +89,17 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   WorkAdsRoute: WorkAdsRoute,
   WorkGamingRoute: WorkGamingRoute,
-  WorkPodcastRoute: WorkPodcastRoute,
-  WorkReelsRoute: WorkReelsRoute,
-  WorkShortsRoute: WorkShortsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
