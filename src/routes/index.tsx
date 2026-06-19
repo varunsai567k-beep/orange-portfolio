@@ -20,13 +20,11 @@ export const Route = createFileRoute("/")({
 
 const services = [
   { icon: Gamepad2, title: "Gaming Edits", desc: "Fast-paced montages, highlights, and viral clips with rhythm-locked cuts.", to: "/work/gaming" as const },
-  { icon: Film, title: "Shorts", desc: "Fast, punchy short-form content built for TikTok, Reels, and YouTube Shorts.", to: "/work/shorts" as const },
   { icon: Megaphone, title: "Advertisements", desc: "Conversion-focused ads built for the scroll — TikTok, Reels, YouTube.", to: "/work/ads" as const },
 ];
 
 const work = [
   { img: workGaming, title: "Gaming Edit", tag: "Montage", to: "/work/gaming" as const },
-  { img: workShorts, title: "Shorts", tag: "Short Form", to: "/work/shorts" as const },
   { img: workAd, title: "Advertisement Edit", tag: "Commercial", to: "/work/ads" as const },
 ];
 
