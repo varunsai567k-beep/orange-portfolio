@@ -133,7 +133,7 @@ function Index() {
             </div>
             <p className="text-muted-foreground max-w-md">From the first frame to the final export — I handle pacing, color, sound, and the little details that keep eyes glued.</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-2 gap-6">
             {services.map((s) => (
               <Link key={s.title} to={s.to} className="group relative rounded-2xl border border-border bg-surface p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-card block">
                 <div className="size-12 rounded-xl bg-gradient-primary grid place-items-center text-primary-foreground mb-5 shadow-glow">
