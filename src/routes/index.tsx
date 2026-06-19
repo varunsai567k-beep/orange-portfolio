@@ -47,7 +47,7 @@ function Index() {
             <a href="#services" className="hover:text-foreground transition">Services</a>
             <a href="#about" className="hover:text-foreground transition">About</a>
           </div>
-          <a href="https://discord.gg/peuquP4ug" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition shadow-glow">
+          <a href="https://discord.com/users/1129413522430885888" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition shadow-glow">
             Hire me <ArrowRight className="size-4" />
           </a>
         </nav>
