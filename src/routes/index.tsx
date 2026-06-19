@@ -1,19 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Play, Instagram, ArrowRight, Film, Gamepad2, Megaphone, Phone, X } from "lucide-react";
+import { Play, Instagram, ArrowRight, Gamepad2, Megaphone, Phone, X } from "lucide-react";
 import { useState } from "react";
 import heroImg from "@/assets/hero-gaming.jpg";
 import workGaming from "@/assets/work-gaming.jpg";
-import workShorts from "@/assets/work-cinematic.jpg";
 import workAd from "@/assets/work-ad.jpg";
 import showreel from "@/assets/videos/showreel.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Orange Edits — Video Editor for Gaming, Shorts & Ads" },
-      { name: "description", content: "Orange Edits — fast-paced gaming montages, short-form content, and scroll-stopping ads edited with precision and style." },
+      { title: "Orange Edits — Video Editor for Gaming & Ads" },
+      { name: "description", content: "Orange Edits — fast-paced gaming montages and scroll-stopping ads edited with precision and style." },
       { property: "og:title", content: "Orange Edits — Video Editor" },
-      { property: "og:description", content: "Gaming • Shorts • Ads" },
+      { property: "og:description", content: "Gaming • Ads" },
     ],
   }),
   component: Index,
@@ -21,13 +20,11 @@ export const Route = createFileRoute("/")({
 
 const services = [
   { icon: Gamepad2, title: "Gaming Edits", desc: "Fast-paced montages, highlights, and viral clips with rhythm-locked cuts.", to: "/work/gaming" as const },
-  { icon: Film, title: "Shorts", desc: "Fast, punchy short-form content built for TikTok, Reels, and YouTube Shorts.", to: "/work/shorts" as const },
   { icon: Megaphone, title: "Advertisements", desc: "Conversion-focused ads built for the scroll — TikTok, Reels, YouTube.", to: "/work/ads" as const },
 ];
 
 const work = [
   { img: workGaming, title: "Gaming Edit", tag: "Montage", to: "/work/gaming" as const },
-  { img: workShorts, title: "Shorts", tag: "Short Form", to: "/work/shorts" as const },
   { img: workAd, title: "Advertisement Edit", tag: "Commercial", to: "/work/ads" as const },
 ];
 
@@ -70,7 +67,7 @@ function Index() {
               <span className="text-gradient">harder.</span> Stay longer.
             </h1>
             <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl">
-              I'm a video editor crafting fast-paced gaming montages, short-form content, and scroll-stopping ads. Stories cut with precision — and a little fire.
+              I'm a video editor crafting fast-paced gaming montages and scroll-stopping ads. Stories cut with precision — and a little fire.
             </p>
             <div className="mt-10 flex items-center gap-3">
               <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition">
@@ -114,7 +111,7 @@ function Index() {
         <div className="flex gap-12 whitespace-nowrap animate-[scroll_30s_linear_infinite] text-muted-foreground font-display text-xl">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex gap-12 shrink-0">
-              {["Gaming", "Shorts", "Advertisements", "Sound Design", "Motion Graphics"].map((t) => (
+              {["Gaming", "Advertisements", "Sound Design", "Motion Graphics"].map((t) => (
                 <span key={t} className="flex items-center gap-12">
                   {t} <span className="text-primary">✦</span>
                 </span>
@@ -136,7 +133,7 @@ function Index() {
             </div>
             <p className="text-muted-foreground max-w-md">From the first frame to the final export — I handle pacing, color, sound, and the little details that keep eyes glued.</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-2 gap-6">
             {services.map((s) => (
               <Link key={s.title} to={s.to} className="group relative rounded-2xl border border-border bg-surface p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-card block">
                 <div className="size-12 rounded-xl bg-gradient-primary grid place-items-center text-primary-foreground mb-5 shadow-glow">
