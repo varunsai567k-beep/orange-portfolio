@@ -9,10 +9,10 @@ import showreel from "@/assets/videos/showreel.mp4.asset.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Orange Edits — Video Editor for Gaming, Shorts & Ads" },
-      { name: "description", content: "Orange Edits — fast-paced gaming montages, short-form content, and scroll-stopping ads edited with precision and style." },
+      { title: "Orange Edits — Video Editor for Gaming & Ads" },
+      { name: "description", content: "Orange Edits — fast-paced gaming montages and scroll-stopping ads edited with precision and style." },
       { property: "og:title", content: "Orange Edits — Video Editor" },
-      { property: "og:description", content: "Gaming • Shorts • Ads" },
+      { property: "og:description", content: "Gaming • Ads" },
     ],
   }),
   component: Index,
