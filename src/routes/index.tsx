@@ -30,6 +30,7 @@ const work = [
 
 function Index() {
   const [showVideo, setShowVideo] = useState(false);
+  const [showHireModal, setShowHireModal] = useState(false);
   return (
     <div className="min-h-screen">
       {/* Nav */}
