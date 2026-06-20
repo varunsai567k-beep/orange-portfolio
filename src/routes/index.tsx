@@ -1,10 +1,13 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Play, Instagram, ArrowRight, Gamepad2, Megaphone, Phone, X, MessageCircle } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import heroImg from "@/assets/hero-gaming.jpg";
-import workGaming from "@/assets/work-gaming.jpg";
-import workAd from "@/assets/work-ad.jpg";
 import showreel from "@/assets/videos/showreel.mp4.asset.json";
+import demo from "@/assets/videos/demo.mp4.asset.json";
+import minecraft from "@/assets/videos/demo-minecraft-reel.mp4.asset.json";
+import vid1 from "@/assets/videos/vid1.mp4.asset.json";
+import demoReel from "@/assets/videos/demo-reel.mp4.asset.json";
+import projectMeme from "@/assets/videos/project-meme.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -18,19 +21,97 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const services = [
-  { icon: Gamepad2, title: "Gaming Edits", desc: "Fast-paced montages, highlights, and viral clips with rhythm-locked cuts.", to: "/work/gaming" as const },
-  { icon: Megaphone, title: "Advertisements", desc: "Conversion-focused ads built for the scroll — TikTok, Reels, YouTube.", to: "/work/ads" as const },
+type Category = {
+  key: string;
+  icon: typeof Gamepad2;
+  title: string;
+  desc: string;
+  tagline: string;
+  videos: { title: string; desc: string; video: string }[];
+};
+
+const categories: Category[] = [
+  {
+    key: "gaming",
+    icon: Gamepad2,
+    title: "Gaming Edits",
+    desc: "Fast-paced montages, highlights, and viral clips with rhythm-locked cuts.",
+    tagline: "Adrenaline-packed montages cut to the beat and built for the algorithm.",
+    videos: [
+      { title: "Demo", desc: "Action-packed gameplay edit.", video: demo.url },
+      { title: "Minecraft Demo Reel", desc: "Cinematic Minecraft moments.", video: minecraft.url },
+      { title: "Vid 1", desc: "Quick-cut gaming highlight.", video: vid1.url },
+    ],
+  },
+  {
+    key: "ads",
+    icon: Megaphone,
+    title: "Advertisements",
+    desc: "Conversion-focused ads built for the scroll — TikTok, Reels, YouTube.",
+    tagline: "Scroll-stopping ad creative engineered for retention and conversion.",
+    videos: [
+      { title: "Demo Reel", desc: "Showcase of recent ad edits.", video: demoReel.url },
+      { title: "Project Meme", desc: "Funny moments + meme edit.", video: projectMeme.url },
+    ],
+  },
 ];
 
-const work = [
-  { img: workGaming, title: "Gaming Edit", tag: "Montage", to: "/work/gaming" as const },
-  { img: workAd, title: "Advertisement Edit", tag: "Commercial", to: "/work/ads" as const },
-];
+type Rect = { top: number; left: number; width: number; height: number };
 
 function Index() {
   const [showVideo, setShowVideo] = useState(false);
   const [showHireModal, setShowHireModal] = useState(false);
+  const [active, setActive] = useState<Category | null>(null);
+  const [origin, setOrigin] = useState<Rect | null>(null);
+  const [phase, setPhase] = useState<"opening" | "open" | "closing">("opening");
+  const cardRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+
+  const openCategory = (cat: Category) => {
+    const el = cardRefs.current[cat.key];
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    setOrigin({ top: r.top, left: r.left, width: r.width, height: r.height });
+    setActive(cat);
+    setPhase("opening");
+    requestAnimationFrame(() => requestAnimationFrame(() => setPhase("open")));
+  };
+
+  const closeCategory = () => {
+    setPhase("closing");
+  };
+
+  useEffect(() => {
+    if (phase === "closing") {
+      const t = setTimeout(() => {
+        setActive(null);
+        setOrigin(null);
+      }, 500);
+      return () => clearTimeout(t);
+    }
+  }, [phase]);
+
+  useEffect(() => {
+    if (active) {
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = "";
+      };
+    }
+  }, [active]);
+
+  const panelStyle: React.CSSProperties =
+    !origin
+      ? {}
+      : phase === "open"
+      ? { top: 0, left: 0, width: "100vw", height: "100vh", borderRadius: 0 }
+      : {
+          top: origin.top,
+          left: origin.left,
+          width: origin.width,
+          height: origin.height,
+          borderRadius: "1rem",
+        };
+
   return (
     <div className="min-h-screen">
       {/* Nav */}
@@ -41,9 +122,9 @@ function Index() {
             Orange<span className="text-gradient">Edits</span>
           </a>
           <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-            <a href="#work" className="hover:text-foreground transition">Work</a>
+            <a href="#services" className="hover:text-foreground transition">Work</a>
             <a href="#services" className="hover:text-foreground transition">Services</a>
-            <a href="#about" className="hover:text-foreground transition">About</a>
+            <a href="#contact" className="hover:text-foreground transition">Contact</a>
           </div>
           <button onClick={() => setShowHireModal(true)} className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition shadow-glow">
             Hire me <ArrowRight className="size-4" />
@@ -132,17 +213,23 @@ function Index() {
                 Edits built for <span className="text-gradient">attention</span>.
               </h2>
             </div>
-            <p className="text-muted-foreground max-w-md">From the first frame to the final export — I handle pacing, color, sound, and the little details that keep eyes glued.</p>
+            <p className="text-muted-foreground max-w-md">Tap a category to pull out the reels — pacing, color, sound, and the little details that keep eyes glued.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
-            {services.map((s) => (
-              <Link key={s.title} to={s.to} className="group relative rounded-2xl border border-border bg-surface p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-card block">
+            {categories.map((s) => (
+              <button
+                key={s.key}
+                ref={(el) => { cardRefs.current[s.key] = el; }}
+                onClick={() => openCategory(s)}
+                className="group relative rounded-2xl border border-border bg-surface p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-card text-left"
+                style={{ visibility: active?.key === s.key ? "hidden" : "visible" }}
+              >
                 <div className="size-12 rounded-xl bg-gradient-primary grid place-items-center text-primary-foreground mb-5 shadow-glow">
                   <s.icon className="size-6" />
                 </div>
                 <h3 className="font-display text-xl font-semibold mb-2 flex items-center gap-2">{s.title} <ArrowRight className="size-4 transition group-hover:translate-x-1" /></h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-              </Link>
+              </button>
             ))}
           </div>
         </div>
@@ -175,6 +262,66 @@ function Index() {
           </div>
         </div>
       </section>
+
+      {/* Category Expand Overlay */}
+      {active && origin && (
+        <div className="fixed inset-0 z-[55]">
+          <div
+            className={`absolute inset-0 bg-background/80 backdrop-blur-sm transition-opacity duration-500 ${
+              phase === "open" ? "opacity-100" : "opacity-0"
+            }`}
+            onClick={closeCategory}
+          />
+          <div
+            className="absolute overflow-hidden border border-border bg-surface shadow-card"
+            style={{
+              ...panelStyle,
+              transition: "top 500ms cubic-bezier(0.65, 0, 0.35, 1), left 500ms cubic-bezier(0.65, 0, 0.35, 1), width 500ms cubic-bezier(0.65, 0, 0.35, 1), height 500ms cubic-bezier(0.65, 0, 0.35, 1), border-radius 500ms ease",
+            }}
+          >
+            <div
+              className={`h-full overflow-y-auto transition-opacity duration-300 ${
+                phase === "open" ? "opacity-100 delay-200" : "opacity-0"
+              }`}
+            >
+              <div className="max-w-6xl mx-auto px-6 py-12 md:py-20">
+                <div className="flex items-start justify-between gap-6 mb-12">
+                  <div>
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="size-10 rounded-lg bg-gradient-primary grid place-items-center text-primary-foreground shadow-glow">
+                        <active.icon className="size-5" />
+                      </div>
+                      <p className="text-primary font-medium text-sm tracking-widest uppercase">{active.title}</p>
+                    </div>
+                    <h2 className="font-display text-4xl md:text-6xl font-bold tracking-tight">
+                      <span className="text-gradient">{active.title.split(" ")[0]}.</span>
+                    </h2>
+                    <p className="mt-4 text-muted-foreground max-w-xl">{active.tagline}</p>
+                  </div>
+                  <button
+                    onClick={closeCategory}
+                    className="p-2 rounded-full border border-border bg-surface/80 hover:bg-surface transition shrink-0"
+                    aria-label="Close"
+                  >
+                    <X className="size-5" />
+                  </button>
+                </div>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {active.videos.map((v) => (
+                    <div key={v.title} className="rounded-2xl border border-border bg-surface-elevated/40 overflow-hidden">
+                      <video src={v.video} controls className="w-full aspect-video object-cover bg-black" />
+                      <div className="p-4">
+                        <h3 className="font-display font-semibold">{v.title}</h3>
+                        <p className="text-sm text-muted-foreground mt-1">{v.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Hire Me Modal */}
       {showHireModal && (
