@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Play, Instagram, ArrowRight, Gamepad2, Megaphone, Phone, X } from "lucide-react";
+import { Play, Instagram, ArrowRight, Gamepad2, Megaphone, Phone, X, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import heroImg from "@/assets/hero-gaming.jpg";
 import workGaming from "@/assets/work-gaming.jpg";
