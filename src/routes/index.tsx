@@ -77,6 +77,11 @@ function Index() {
     const el = cardRefs.current[cat.key];
     if (!el) return;
     const r = el.getBoundingClientRect();
+    if (showreelActive) {
+      setShowreelActive(false);
+      setShowreelOrigin(null);
+      setShowreelDest(null);
+    }
     setOrigin({ top: r.top, left: r.left, width: r.width, height: r.height });
     setActive(cat);
     setPhase("opening");
@@ -85,6 +90,35 @@ function Index() {
 
   const closeCategory = () => {
     setPhase("closing");
+  };
+
+  const openShowreel = () => {
+    if (active) {
+      setActive(null);
+      setOrigin(null);
+    }
+    const btn = showreelButtonRef.current;
+    if (!btn) return;
+    const r = btn.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const isXl = vw >= 1280;
+    const isLg = vw >= 1024;
+    const width = isXl ? 480 : isLg ? 380 : Math.min(vw * 0.9, 560);
+    const height = (width * 9) / 16;
+    const heroRect = heroRef.current?.getBoundingClientRect();
+    const containerWidth = Math.min(vw, 1280);
+    const destLeft = isLg ? (vw + containerWidth) / 2 - (isXl ? 504 : 404) : (vw - width) / 2;
+    const destTop = isLg && heroRect ? heroRect.top + (heroRect.height - height) / 2 : (vh - height) / 2;
+    setShowreelOrigin({ top: r.top, left: r.left, width: r.width, height: r.height });
+    setShowreelDest({ top: destTop, left: destLeft, width, height });
+    setShowreelActive(true);
+    setShowreelPhase("opening");
+    requestAnimationFrame(() => requestAnimationFrame(() => setShowreelPhase("open")));
+  };
+
+  const closeShowreel = () => {
+    setShowreelPhase("closing");
   };
 
   useEffect(() => {
