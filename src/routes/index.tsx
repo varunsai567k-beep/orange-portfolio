@@ -61,12 +61,17 @@ const categories: Category[] = [
 type Rect = { top: number; left: number; width: number; height: number };
 
 function Index() {
-  const [showVideo, setShowVideo] = useState(false);
   const [showHireModal, setShowHireModal] = useState(false);
   const [active, setActive] = useState<Category | null>(null);
   const [origin, setOrigin] = useState<Rect | null>(null);
   const [phase, setPhase] = useState<"opening" | "open" | "closing">("opening");
   const cardRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const heroRef = useRef<HTMLElement>(null);
+  const showreelButtonRef = useRef<HTMLButtonElement>(null);
+  const [showreelActive, setShowreelActive] = useState(false);
+  const [showreelOrigin, setShowreelOrigin] = useState<Rect | null>(null);
+  const [showreelDest, setShowreelDest] = useState<Rect | null>(null);
+  const [showreelPhase, setShowreelPhase] = useState<"opening" | "open" | "closing">("opening");
 
   const openCategory = (cat: Category) => {
     const el = cardRefs.current[cat.key];
