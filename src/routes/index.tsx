@@ -378,6 +378,36 @@ function Index() {
         </div>
       )}
 
+      {/* Showreel Expand Overlay */}
+      {showreelActive && showreelOrigin && (
+        <div className="fixed inset-0 z-[56]">
+          <div className="absolute inset-0" onClick={closeShowreel} />
+          <div
+            className="absolute overflow-hidden border border-border bg-surface shadow-card"
+            style={{
+              ...showreelPanelStyle,
+              transition: "top 500ms cubic-bezier(0.65, 0, 0.35, 1), left 500ms cubic-bezier(0.65, 0, 0.35, 1), width 500ms cubic-bezier(0.65, 0, 0.35, 1), height 500ms cubic-bezier(0.65, 0, 0.35, 1), border-radius 500ms ease",
+            }}
+          >
+            <div className={`h-full w-full p-3 flex flex-col transition-opacity duration-300 ${showreelPhase === "open" ? "opacity-100" : "opacity-0"}`}>
+              <button
+                onClick={closeShowreel}
+                className="absolute top-3 right-3 z-10 p-1.5 rounded-full border border-border bg-surface/80 hover:bg-surface transition"
+                aria-label="Close showreel"
+              >
+                <X className="size-4" />
+              </button>
+              <video
+                src={showreel.url}
+                controls
+                autoPlay
+                className="w-full h-full rounded-xl bg-black object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Hire Me Modal */}
       {showHireModal && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center px-6" onClick={() => setShowHireModal(false)}>
