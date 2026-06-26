@@ -132,13 +132,24 @@ function Index() {
   }, [phase]);
 
   useEffect(() => {
-    if (active) {
+    if (showreelPhase === "closing") {
+      const t = setTimeout(() => {
+        setShowreelActive(false);
+        setShowreelOrigin(null);
+        setShowreelDest(null);
+      }, 500);
+      return () => clearTimeout(t);
+    }
+  }, [showreelPhase]);
+
+  useEffect(() => {
+    if (active || showreelActive) {
       document.body.style.overflow = "hidden";
       return () => {
         document.body.style.overflow = "";
       };
     }
-  }, [active]);
+  }, [active, showreelActive]);
 
   const panelStyle: React.CSSProperties =
     !origin
