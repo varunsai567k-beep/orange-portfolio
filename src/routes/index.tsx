@@ -140,7 +140,7 @@ function Index() {
       </header>
 
       {/* Hero */}
-      <section className="relative pt-32 pb-24 px-6 overflow-hidden">
+      <section ref={heroRef} className="relative pt-32 pb-24 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <img src={heroImg} alt="" width={1280} height={800} className="w-full h-full object-cover opacity-25" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
@@ -163,7 +163,8 @@ function Index() {
                 Start a project
               </a>
               <button
-                onClick={() => setShowVideo(!showVideo)}
+                ref={showreelButtonRef}
+                onClick={openShowreel}
                 className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-3 font-medium hover:bg-surface transition"
               >
                 <Play className="size-4 fill-primary" /> Showreel
@@ -175,23 +176,6 @@ function Index() {
               <div><span className="text-foreground font-display text-2xl font-bold">24h</span> <br />Avg turnaround</div>
             </div>
           </div>
-          {showVideo && (
-            <div className="relative lg:w-[380px] xl:w-[480px]">
-              <button
-                onClick={() => setShowVideo(false)}
-                className="absolute -top-3 -right-3 z-10 p-1.5 rounded-full border border-border bg-surface/80 backdrop-blur hover:bg-surface transition"
-                aria-label="Close showreel"
-              >
-                <X className="size-4" />
-              </button>
-              <video
-                src={showreel.url}
-                controls
-                autoPlay
-                className="w-full rounded-2xl border border-border shadow-card"
-              />
-            </div>
-          )}
         </div>
       </section>
 
