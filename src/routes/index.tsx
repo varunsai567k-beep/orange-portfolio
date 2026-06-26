@@ -61,17 +61,27 @@ const categories: Category[] = [
 type Rect = { top: number; left: number; width: number; height: number };
 
 function Index() {
-  const [showVideo, setShowVideo] = useState(false);
   const [showHireModal, setShowHireModal] = useState(false);
   const [active, setActive] = useState<Category | null>(null);
   const [origin, setOrigin] = useState<Rect | null>(null);
   const [phase, setPhase] = useState<"opening" | "open" | "closing">("opening");
   const cardRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const heroRef = useRef<HTMLElement>(null);
+  const showreelButtonRef = useRef<HTMLButtonElement>(null);
+  const [showreelActive, setShowreelActive] = useState(false);
+  const [showreelOrigin, setShowreelOrigin] = useState<Rect | null>(null);
+  const [showreelDest, setShowreelDest] = useState<Rect | null>(null);
+  const [showreelPhase, setShowreelPhase] = useState<"opening" | "open" | "closing">("opening");
 
   const openCategory = (cat: Category) => {
     const el = cardRefs.current[cat.key];
     if (!el) return;
     const r = el.getBoundingClientRect();
+    if (showreelActive) {
+      setShowreelActive(false);
+      setShowreelOrigin(null);
+      setShowreelDest(null);
+    }
     setOrigin({ top: r.top, left: r.left, width: r.width, height: r.height });
     setActive(cat);
     setPhase("opening");
@@ -80,6 +90,35 @@ function Index() {
 
   const closeCategory = () => {
     setPhase("closing");
+  };
+
+  const openShowreel = () => {
+    if (active) {
+      setActive(null);
+      setOrigin(null);
+    }
+    const btn = showreelButtonRef.current;
+    if (!btn) return;
+    const r = btn.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const isXl = vw >= 1280;
+    const isLg = vw >= 1024;
+    const width = isXl ? 480 : isLg ? 380 : Math.min(vw * 0.9, 560);
+    const height = (width * 9) / 16;
+    const heroRect = heroRef.current?.getBoundingClientRect();
+    const containerWidth = Math.min(vw, 1280);
+    const destLeft = isLg ? (vw + containerWidth) / 2 - (isXl ? 504 : 404) : (vw - width) / 2;
+    const destTop = isLg && heroRect ? heroRect.top + (heroRect.height - height) / 2 : (vh - height) / 2;
+    setShowreelOrigin({ top: r.top, left: r.left, width: r.width, height: r.height });
+    setShowreelDest({ top: destTop, left: destLeft, width, height });
+    setShowreelActive(true);
+    setShowreelPhase("opening");
+    requestAnimationFrame(() => requestAnimationFrame(() => setShowreelPhase("open")));
+  };
+
+  const closeShowreel = () => {
+    setShowreelPhase("closing");
   };
 
   useEffect(() => {
@@ -93,13 +132,24 @@ function Index() {
   }, [phase]);
 
   useEffect(() => {
-    if (active) {
+    if (showreelPhase === "closing") {
+      const t = setTimeout(() => {
+        setShowreelActive(false);
+        setShowreelOrigin(null);
+        setShowreelDest(null);
+      }, 500);
+      return () => clearTimeout(t);
+    }
+  }, [showreelPhase]);
+
+  useEffect(() => {
+    if (active || showreelActive) {
       document.body.style.overflow = "hidden";
       return () => {
         document.body.style.overflow = "";
       };
     }
-  }, [active]);
+  }, [active, showreelActive]);
 
   const panelStyle: React.CSSProperties =
     !origin
@@ -111,6 +161,25 @@ function Index() {
           left: origin.left,
           width: origin.width,
           height: origin.height,
+          borderRadius: "1rem",
+        };
+
+  const showreelPanelStyle: React.CSSProperties =
+    !showreelOrigin
+      ? {}
+      : showreelPhase === "open" && showreelDest
+      ? {
+          top: showreelDest.top,
+          left: showreelDest.left,
+          width: showreelDest.width,
+          height: showreelDest.height,
+          borderRadius: "1rem",
+        }
+      : {
+          top: showreelOrigin.top,
+          left: showreelOrigin.left,
+          width: showreelOrigin.width,
+          height: showreelOrigin.height,
           borderRadius: "1rem",
         };
 
@@ -135,7 +204,7 @@ function Index() {
       </header>
 
       {/* Hero */}
-      <section className="relative pt-32 pb-24 px-6 overflow-hidden">
+      <section ref={heroRef} className="relative pt-32 pb-24 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <img src={heroImg} alt="" width={1280} height={800} className="w-full h-full object-cover opacity-25" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
@@ -158,7 +227,8 @@ function Index() {
                 Start a project
               </a>
               <button
-                onClick={() => setShowVideo(!showVideo)}
+                ref={showreelButtonRef}
+                onClick={openShowreel}
                 className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-3 font-medium hover:bg-surface transition"
               >
                 <Play className="size-4 fill-primary" /> Showreel
@@ -170,23 +240,6 @@ function Index() {
               <div><span className="text-foreground font-display text-2xl font-bold">24h</span> <br />Avg turnaround</div>
             </div>
           </div>
-          {showVideo && (
-            <div className="relative lg:w-[380px] xl:w-[480px]">
-              <button
-                onClick={() => setShowVideo(false)}
-                className="absolute -top-3 -right-3 z-10 p-1.5 rounded-full border border-border bg-surface/80 backdrop-blur hover:bg-surface transition"
-                aria-label="Close showreel"
-              >
-                <X className="size-4" />
-              </button>
-              <video
-                src={showreel.url}
-                controls
-                autoPlay
-                className="w-full rounded-2xl border border-border shadow-card"
-              />
-            </div>
-          )}
         </div>
       </section>
 
@@ -320,6 +373,36 @@ function Index() {
                   ))}
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Showreel Expand Overlay */}
+      {showreelActive && showreelOrigin && (
+        <div className="fixed inset-0 z-[56]">
+          <div className="absolute inset-0" onClick={closeShowreel} />
+          <div
+            className="absolute overflow-hidden border border-border bg-surface shadow-card"
+            style={{
+              ...showreelPanelStyle,
+              transition: "top 500ms cubic-bezier(0.65, 0, 0.35, 1), left 500ms cubic-bezier(0.65, 0, 0.35, 1), width 500ms cubic-bezier(0.65, 0, 0.35, 1), height 500ms cubic-bezier(0.65, 0, 0.35, 1), border-radius 500ms ease",
+            }}
+          >
+            <div className={`h-full w-full p-3 flex flex-col transition-opacity duration-300 ${showreelPhase === "open" ? "opacity-100" : "opacity-0"}`}>
+              <button
+                onClick={closeShowreel}
+                className="absolute top-3 right-3 z-10 p-1.5 rounded-full border border-border bg-surface/80 hover:bg-surface transition"
+                aria-label="Close showreel"
+              >
+                <X className="size-4" />
+              </button>
+              <video
+                src={showreel.url}
+                controls
+                autoPlay
+                className="w-full h-full rounded-xl bg-black object-contain"
+              />
             </div>
           </div>
         </div>
