@@ -164,6 +164,25 @@ function Index() {
           borderRadius: "1rem",
         };
 
+  const showreelPanelStyle: React.CSSProperties =
+    !showreelOrigin
+      ? {}
+      : showreelPhase === "open" && showreelDest
+      ? {
+          top: showreelDest.top,
+          left: showreelDest.left,
+          width: showreelDest.width,
+          height: showreelDest.height,
+          borderRadius: "1rem",
+        }
+      : {
+          top: showreelOrigin.top,
+          left: showreelOrigin.left,
+          width: showreelOrigin.width,
+          height: showreelOrigin.height,
+          borderRadius: "1rem",
+        };
+
   return (
     <div className="min-h-screen">
       {/* Nav */}
