@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Play, Instagram, ArrowRight, Gamepad2, Megaphone, Phone, X, MessageCircle } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import { CustomCursor } from "@/components/CustomCursor";
 import heroImg from "@/assets/hero-gaming.jpg";
 import showreel from "@/assets/videos/showreel.mp4.asset.json";
 import demo from "@/assets/videos/demo.mp4.asset.json";
@@ -185,6 +186,7 @@ function Index() {
 
   return (
     <div className="min-h-screen">
+      <CustomCursor />
       {/* Nav */}
       <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-background/60 border-b border-border/50">
         <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -197,7 +199,7 @@ function Index() {
             <a href="#services" className="hover:text-foreground transition">Services</a>
             <a href="#contact" className="hover:text-foreground transition">Contact</a>
           </div>
-          <button onClick={() => setShowHireModal(true)} className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition shadow-glow">
+          <button onClick={() => setShowHireModal(true)} className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition shadow-glow btn-hover-pop">
             Hire me <ArrowRight className="size-4" />
           </button>
         </nav>
@@ -223,13 +225,13 @@ function Index() {
               I'm a video editor crafting fast-paced gaming montages and scroll-stopping ads. Stories cut with precision — and a little fire.
             </p>
             <div className="mt-10 flex items-center gap-3">
-              <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition">
+              <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition btn-hover-pop">
                 Start a project
               </a>
               <button
                 ref={showreelButtonRef}
                 onClick={openShowreel}
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-3 font-medium hover:bg-surface transition"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-3 font-medium hover:bg-surface transition btn-hover-pop"
               >
                 <Play className="size-4 fill-primary" /> Showreel
               </button>
@@ -276,7 +278,7 @@ function Index() {
                 key={s.key}
                 ref={(el) => { cardRefs.current[s.key] = el; }}
                 onClick={() => openCategory(s)}
-                className="group relative rounded-2xl border border-border bg-surface p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-card text-left"
+                className="group relative rounded-2xl border border-border bg-surface p-6 hover:border-primary/50 btn-hover-pop text-left"
                 style={{ visibility: active?.key === s.key ? "hidden" : "visible" }}
               >
                 <div className="size-12 rounded-xl bg-gradient-primary grid place-items-center text-primary-foreground mb-5 shadow-glow">
@@ -304,13 +306,13 @@ function Index() {
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 relative">
             <div className="flex flex-wrap items-center justify-center gap-3">
-              <a href="https://discord.gg/peuquP4ug" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition">
+              <a href="https://discord.gg/peuquP4ug" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition btn-hover-pop">
                 Join my Discord <ArrowRight className="size-4" />
               </a>
-              <a href="tel:7075254541" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:bg-background/40 transition">
+              <a href="tel:7075254541" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:bg-background/40 transition btn-hover-pop">
                 <Phone className="size-4" /> 707-525-4541
               </a>
-              <a href="https://instagram.com/Orange_playez" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:bg-background/40 transition">
+              <a href="https://instagram.com/Orange_playez" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:bg-background/40 transition btn-hover-pop">
                 <Instagram className="size-4" /> @Orange_playez
               </a>
             </div>
@@ -355,7 +357,7 @@ function Index() {
                   </div>
                   <button
                     onClick={closeCategory}
-                    className="p-2 rounded-full border border-border bg-surface/80 hover:bg-surface transition shrink-0"
+                    className="p-2 rounded-full border border-border bg-surface/80 hover:bg-surface transition btn-hover-pop"
                     aria-label="Close"
                   >
                     <X className="size-5" />
@@ -392,7 +394,7 @@ function Index() {
             <div className={`h-full w-full p-3 flex flex-col transition-opacity duration-300 ${showreelPhase === "open" ? "opacity-100" : "opacity-0"}`}>
               <button
                 onClick={closeShowreel}
-                className="absolute top-3 right-3 z-10 p-1.5 rounded-full border border-border bg-surface/80 hover:bg-surface transition"
+                className="absolute top-3 right-3 z-10 p-1.5 rounded-full border border-border bg-surface/80 hover:bg-surface transition btn-hover-pop"
                 aria-label="Close showreel"
               >
                 <X className="size-4" />
@@ -415,7 +417,7 @@ function Index() {
           <div className="relative w-full max-w-sm rounded-3xl border border-border bg-surface p-8 shadow-card" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setShowHireModal(false)}
-              className="absolute top-4 right-4 p-1.5 rounded-full border border-border bg-surface/80 hover:bg-surface transition"
+              className="absolute top-4 right-4 p-1.5 rounded-full border border-border bg-surface/80 hover:bg-surface transition btn-hover-pop"
               aria-label="Close"
             >
               <X className="size-4" />
@@ -428,7 +430,7 @@ function Index() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setShowHireModal(false)}
-                className="flex items-center gap-3 rounded-xl border border-border bg-surface-elevated/50 px-5 py-4 hover:border-primary/50 hover:-translate-y-0.5 transition-all"
+                className="flex items-center gap-3 rounded-xl border border-border bg-surface-elevated/50 px-5 py-4 hover:border-primary/50 transition-all btn-hover-pop"
               >
                 <div className="size-10 rounded-lg bg-gradient-primary grid place-items-center text-primary-foreground shadow-glow shrink-0">
                   <Instagram className="size-5" />
@@ -443,7 +445,7 @@ function Index() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setShowHireModal(false)}
-                className="flex items-center gap-3 rounded-xl border border-border bg-surface-elevated/50 px-5 py-4 hover:border-primary/50 hover:-translate-y-0.5 transition-all"
+                className="flex items-center gap-3 rounded-xl border border-border bg-surface-elevated/50 px-5 py-4 hover:border-primary/50 transition-all btn-hover-pop"
               >
                 <div className="size-10 rounded-lg bg-gradient-primary grid place-items-center text-primary-foreground shadow-glow shrink-0">
                   <MessageCircle className="size-5" />
@@ -458,7 +460,7 @@ function Index() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setShowHireModal(false)}
-                className="flex items-center gap-3 rounded-xl border border-border bg-surface-elevated/50 px-5 py-4 hover:border-primary/50 hover:-translate-y-0.5 transition-all"
+                className="flex items-center gap-3 rounded-xl border border-border bg-surface-elevated/50 px-5 py-4 hover:border-primary/50 transition-all btn-hover-pop"
               >
                 <div className="size-10 rounded-lg bg-gradient-primary grid place-items-center text-primary-foreground shadow-glow shrink-0">
                   <svg className="size-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
