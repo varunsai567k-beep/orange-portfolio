@@ -45,6 +45,7 @@ const categories: Category[] = [
       { title: "Minecraft Demo Reel", desc: "Cinematic Minecraft moments.", video: minecraft.url },
       { title: "Vid 1", desc: "Quick-cut gaming highlight.", video: vid1.url },
       { title: "Showreel 2", desc: "Gaming montage reel.", video: showreeel2.url },
+      { title: "Showreel 3", desc: "Kryptix showreel.", video: showreel3.url },
     ],
   },
   {
