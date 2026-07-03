@@ -82,14 +82,21 @@ export function CustomCursor() {
   if (!enabled) return null;
 
   return (
-    <div
-      ref={cursorRef}
-      aria-hidden="true"
-      className="pointer-events-none fixed top-0 left-0 z-[100] hidden md:flex items-center justify-center"
-      style={{ transition: "transform 0.15s ease-out" }}
-    >
-      <div className="cursor-ring" />
-      <div className="cursor-dot" />
-    </div>
+    <>
+      <div
+        ref={spotlightRef}
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 z-[90] hidden md:block cursor-spotlight"
+      />
+      <div
+        ref={cursorRef}
+        aria-hidden="true"
+        className="pointer-events-none fixed top-0 left-0 z-[100] hidden md:flex items-center justify-center"
+        style={{ transition: "transform 0.15s ease-out" }}
+      >
+        <div className="cursor-ring" />
+        <div className="cursor-dot" />
+      </div>
+    </>
   );
 }
