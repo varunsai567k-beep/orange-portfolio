@@ -168,11 +168,6 @@
   will-change: transform, opacity;
 }
 
-[data-hover="true"] ~ .cursor-trail,
-[data-hover="true"] + .cursor-trail {
-  opacity: 0.5;
-}
-
 .btn-hover-pop {
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, opacity 0.2s ease-out;
 }
