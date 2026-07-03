@@ -156,6 +156,18 @@
   mix-blend-mode: screen;
 }
 
+.cursor-trail {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in oklab, var(--primary) 50%, transparent);
+  background: color-mix(in oklab, var(--primary) 8%, transparent);
+  box-shadow: 0 0 12px -2px color-mix(in oklab, var(--primary) 45%, transparent);
+  backdrop-filter: blur(1px);
+  transition: opacity 0.2s ease-out, transform 0.05s linear;
+  will-change: transform, opacity;
+}
+
 .btn-hover-pop {
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, opacity 0.2s ease-out;
 }
