@@ -1,17 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 
-const TRAIL_COUNT = 5;
-
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const spotlightRef = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
   const hoverRef = useRef(false);
   const posRef = useRef({ x: 0, y: 0 });
-  const trailRefs = useRef<{ x: number; y: number }[]>(
-    Array.from({ length: TRAIL_COUNT }).map(() => ({ x: 0, y: 0 }))
-  );
-  const trailElsRef = useRef<(HTMLDivElement | null)[]>([]);
   const rafRef = useRef(0);
 
   const updateTransform = () => {
@@ -20,18 +14,9 @@ export function CustomCursor() {
       spot.style.background = `radial-gradient(600px circle at ${posRef.current.x}px ${posRef.current.y}px, color-mix(in oklab, var(--primary) 14%, transparent), transparent 45%)`;
     }
     const cursor = cursorRef.current;
-    if (cursor) {
-      const scale = hoverRef.current ? 1.5 : 1;
-      cursor.style.transform = `translate(${posRef.current.x}px, ${posRef.current.y}px) translate(-50%, -50%) scale(${scale})`;
-    }
-    trailElsRef.current.forEach((el, i) => {
-      if (!el) return;
-      const t = trailRefs.current[i];
-      const size = 1 - i * 0.14;
-      const opacity = 1 - i * 0.18;
-      el.style.transform = `translate(${t.x}px, ${t.y}px) translate(-50%, -50%) scale(${Math.max(0.2, size)})`;
-      el.style.opacity = String(Math.max(0, opacity));
-    });
+    if (!cursor) return;
+    const scale = hoverRef.current ? 1.5 : 1;
+    cursor.style.transform = `translate(${posRef.current.x}px, ${posRef.current.y}px) translate(-50%, -50%) scale(${scale})`;
   };
 
   const setHover = (next: boolean) => {
@@ -51,19 +36,10 @@ export function CustomCursor() {
 
     setEnabled(true);
 
-    const lerp = (a: number, b: number, n: number) => a + (b - a) * n;
-
     const move = (e: MouseEvent) => {
       posRef.current = { x: e.clientX, y: e.clientY };
       if (!rafRef.current) {
         rafRef.current = requestAnimationFrame(() => {
-          // update trail positions with staggered smoothing
-          const target = posRef.current;
-          trailRefs.current.forEach((t, i) => {
-            const factor = 0.25 - i * 0.03; // earlier trails follow faster
-            t.x = lerp(t.x, target.x, factor);
-            t.y = lerp(t.y, target.y, factor);
-          });
           updateTransform();
           rafRef.current = 0;
         });
@@ -112,14 +88,6 @@ export function CustomCursor() {
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 z-[90] hidden md:block cursor-spotlight"
       />
-      {Array.from({ length: TRAIL_COUNT }).map((_, i) => (
-        <div
-          key={i}
-          ref={(el) => { trailElsRef.current[i] = el; }}
-          aria-hidden="true"
-          className="pointer-events-none fixed top-0 left-0 z-[95] hidden md:block cursor-trail"
-        />
-      ))}
       <div
         ref={cursorRef}
         aria-hidden="true"
@@ -132,4 +100,5 @@ export function CustomCursor() {
     </>
   );
 }
+
 
