@@ -115,7 +115,7 @@ export function CustomCursor() {
       {Array.from({ length: TRAIL_COUNT }).map((_, i) => (
         <div
           key={i}
-          ref={(el) => (trailElsRef.current[i] = el)}
+          ref={(el) => { trailElsRef.current[i] = el; }}
           aria-hidden="true"
           className="pointer-events-none fixed top-0 left-0 z-[95] hidden md:block cursor-trail"
         />
