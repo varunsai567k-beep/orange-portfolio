@@ -151,6 +151,11 @@
   transform: scale(1.5);
 }
 
+.cursor-spotlight {
+  transition: background 0.25s ease-out;
+  mix-blend-mode: screen;
+}
+
 .btn-hover-pop {
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, opacity 0.2s ease-out;
 }
