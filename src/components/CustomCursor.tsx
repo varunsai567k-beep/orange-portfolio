@@ -2,12 +2,17 @@ import { useEffect, useRef, useState } from "react";
 
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
+  const spotlightRef = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
   const hoverRef = useRef(false);
   const posRef = useRef({ x: 0, y: 0 });
   const rafRef = useRef(0);
 
   const updateTransform = () => {
+    const spot = spotlightRef.current;
+    if (spot) {
+      spot.style.background = `radial-gradient(600px circle at ${posRef.current.x}px ${posRef.current.y}px, color-mix(in oklab, var(--primary) 14%, transparent), transparent 45%)`;
+    }
     const cursor = cursorRef.current;
     if (!cursor) return;
     const scale = hoverRef.current ? 1.5 : 1;
