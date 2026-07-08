@@ -6,7 +6,7 @@ import heroImg from "@/assets/hero-gaming.jpg";
 import showreel from "@/assets/videos/showreel.mp4.asset.json";
 import demo from "@/assets/videos/demo.mp4.asset.json";
 import minecraft from "@/assets/videos/demo-minecraft-reel.mp4.asset.json";
-import vid1 from "@/assets/videos/vid1.mp4.asset.json";
+
 import showreeel2 from "@/assets/videos/showreeel2.mp4.asset.json";
 import showreel3 from "@/assets/videos/showreel3.mp4.asset.json";
 import lostShowreel from "@/assets/videos/lost-showreel.mp4.asset.json";
@@ -44,7 +44,7 @@ const categories: Category[] = [
     videos: [
       { title: "Demo", desc: "Action-packed gameplay edit.", video: demo.url },
       { title: "Minecraft Demo Reel", desc: "Cinematic Minecraft moments.", video: minecraft.url },
-      { title: "Vid 1", desc: "Quick-cut gaming highlight.", video: vid1.url },
+      
       { title: "Showreel 2", desc: "Gaming montage reel.", video: showreeel2.url },
       { title: "Showreel 3", desc: "Kryptix showreel.", video: showreel3.url },
       { title: "Lost Showreel", desc: "Cinematic gaming edit.", video: lostShowreel.url },
@@ -57,7 +57,7 @@ const categories: Category[] = [
     desc: "Conversion-focused ads built for the scroll — TikTok, Reels, YouTube.",
     tagline: "Scroll-stopping ad creative engineered for retention and conversion.",
     videos: [
-      { title: "Demo Reel", desc: "Showcase of recent ad edits.", video: demoReel.url },
+      { title: "2D Animation Edit", desc: "Showcase of recent ad edits.", video: demoReel.url },
       { title: "Project Meme", desc: "Funny moments + meme edit.", video: projectMeme.url },
     ],
   },

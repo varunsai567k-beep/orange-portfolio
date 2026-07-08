@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CategoryPage } from "@/components/CategoryPage";
 import demo from "@/assets/videos/demo.mp4.asset.json";
 import minecraft from "@/assets/videos/demo-minecraft-reel.mp4.asset.json";
-import vid1 from "@/assets/videos/vid1.mp4.asset.json";
+
 import showreel3 from "@/assets/videos/showreel3.mp4.asset.json";
 import lostShowreel from "@/assets/videos/lost-showreel.mp4.asset.json";
 
@@ -21,7 +21,7 @@ export const Route = createFileRoute("/work/gaming")({
 const videos = [
   { title: "Demo", desc: "Action-packed gameplay edit.", video: demo.url },
   { title: "Minecraft Demo Reel", desc: "Cinematic Minecraft moments.", video: minecraft.url },
-  { title: "Vid 1", desc: "Quick-cut gaming highlight.", video: vid1.url },
+  
   { title: "Showreel 3", desc: "Kryptix showreel.", video: showreel3.url },
   { title: "Lost Showreel", desc: "Cinematic gaming edit.", video: lostShowreel.url },
 ];
