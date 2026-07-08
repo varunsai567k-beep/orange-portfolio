@@ -16,7 +16,7 @@ export const Route = createFileRoute("/work/ads")({
 });
 
 const videos = [
-  { title: "Demo Reel", desc: "Showcase of recent ad edits.", video: demoReel.url },
+  { title: "2D Animation Edit", desc: "Showcase of recent ad edits.", video: demoReel.url },
   { title: "Project Meme", desc: "Funny moments + meme edit.", video: projectMeme.url },
 ];
 
