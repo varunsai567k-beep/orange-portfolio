@@ -10,6 +10,7 @@ import minecraft from "@/assets/videos/demo-minecraft-reel.mp4.asset.json";
 import showreeel2 from "@/assets/videos/showreeel2.mp4.asset.json";
 import showreel3 from "@/assets/videos/showreel3.mp4.asset.json";
 import lostShowreel from "@/assets/videos/lost-showreel.mp4.asset.json";
+import legendShowreel from "@/assets/videos/legend-showreel.mp4.asset.json";
 import demoReel from "@/assets/videos/demo-reel.mp4.asset.json";
 import projectMeme from "@/assets/videos/project-meme.mp4.asset.json";
 
