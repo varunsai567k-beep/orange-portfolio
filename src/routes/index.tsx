@@ -192,6 +192,10 @@ function Index() {
           borderRadius: "1rem",
         };
 
+  const statsReveal = useReveal<HTMLDivElement>();
+  const servicesReveal = useReveal<HTMLDivElement>();
+  const contactReveal = useReveal<HTMLDivElement>();
+
   return (
     <div className="min-h-screen">
       <CustomCursor />
@@ -203,9 +207,9 @@ function Index() {
             Orange<span className="text-gradient">Edits</span>
           </a>
           <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-            <a href="#services" className="hover:text-foreground transition">Work</a>
-            <a href="#services" className="hover:text-foreground transition">Services</a>
-            <a href="#contact" className="hover:text-foreground transition">Contact</a>
+            <a href="#services" className="hover:text-primary transition-colors">Work</a>
+            <a href="#services" className="hover:text-primary transition-colors">Services</a>
+            <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
           </div>
           <button onClick={() => setShowHireModal(true)} className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition shadow-glow btn-hover-pop">
             Hire me <ArrowRight className="size-4" />
@@ -214,39 +218,65 @@ function Index() {
       </header>
 
       {/* Hero */}
-      <section ref={heroRef} className="relative pt-32 pb-24 px-6 overflow-hidden">
+      <section ref={heroRef} className="relative pt-36 pb-32 md:pt-40 md:pb-40 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <img src={heroImg} alt="" width={1280} height={800} className="w-full h-full object-cover opacity-25" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
+          <img src={heroImg} alt="" width={1280} height={800} className="w-full h-full object-cover opacity-30" />
+          {/* bottom-to-top dark gradient for text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/20" />
+          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
         </div>
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[1fr_auto] gap-10 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-1.5 text-xs text-muted-foreground mb-8">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-1.5 text-xs text-muted-foreground mb-8 anim-fade-up" style={{ animationDelay: "60ms" }}>
               <span className="size-1.5 rounded-full bg-primary animate-pulse" />
               Available for new projects — June 2026
             </div>
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter">
+            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter anim-fade-up" style={{ animationDelay: "160ms" }}>
               Edits that hit <br />
               <span className="text-gradient">harder.</span> Stay longer.
             </h1>
-            <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl">
+            <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl anim-fade-up" style={{ animationDelay: "300ms" }}>
               I'm a video editor crafting fast-paced gaming montages and scroll-stopping ads. Stories cut with precision — and a little fire.
             </p>
-            <div className="mt-10 flex items-center gap-3">
+            <div className="mt-10 flex flex-wrap items-center gap-3 anim-fade-up" style={{ animationDelay: "440ms" }}>
               <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition btn-hover-pop">
-                Start a project
+                Start a project <ArrowRight className="size-4" />
               </a>
               <button
                 ref={showreelButtonRef}
                 onClick={openShowreel}
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-3 font-medium hover:bg-surface transition btn-hover-pop"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-5 py-3 font-medium hover:bg-surface hover:border-primary/60 transition btn-hover-pop"
               >
-                <Play className="size-4 fill-primary" /> Showreel
+                <Play className="size-4 fill-primary text-primary" /> Showreel
               </button>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Stats */}
+      <section className="px-6 pb-4">
+        <div
+          ref={statsReveal.ref}
+          className={`max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 transition-all duration-700 ease-out ${
+            statsReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          }`}
+        >
+          {[
+            { end: 10, suffix: "+", label: "Projects delivered" },
+            { end: 20, suffix: "k+", label: "Views generated" },
+            { end: 24, suffix: "h", label: "Avg turnaround" },
+          ].map((s) => (
+            <div key={s.label} className="rounded-2xl border border-border bg-surface/60 backdrop-blur p-6 text-center hover:border-primary/50 transition-colors">
+              <div className="font-display text-4xl md:text-5xl font-bold text-gradient">
+                <CountUp end={s.end} suffix={s.suffix} start={statsReveal.visible} />
+              </div>
+              <p className="mt-2 text-sm text-muted-foreground tracking-wide uppercase">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
 
       {/* Marquee */}
       <div className="border-y border-border/50 bg-surface/30 backdrop-blur py-5 overflow-hidden">
