@@ -370,13 +370,10 @@ function Index() {
             contactReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-
-
-      {/* Contact */}
-      <section id="contact" className="py-28 px-6">
-        <div className="max-w-4xl mx-auto relative rounded-3xl border border-border bg-surface overflow-hidden p-10 md:p-16 text-center shadow-card">
           <div className="absolute -top-32 left-1/2 -translate-x-1/2 size-96 bg-gradient-primary opacity-30 blur-[100px] rounded-full pointer-events-none" />
-          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 relative">Work with me</p>
+          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 relative flex items-center justify-center gap-2">
+            <span className="text-primary">✦</span> Work with me <span className="text-primary">✦</span>
+          </p>
           <h2 className="font-display text-4xl md:text-6xl font-bold tracking-tight relative">
             Let's make something <br /><span className="text-gradient">unforgettable</span>.
           </h2>
@@ -388,10 +385,10 @@ function Index() {
               <a href="https://discord.gg/peuquP4ug" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition btn-hover-pop">
                 Join my Discord <ArrowRight className="size-4" />
               </a>
-              <a href="tel:7075254541" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:bg-background/40 transition btn-hover-pop">
+              <a href="tel:7075254541" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:border-primary/60 hover:text-primary hover:bg-background/40 transition btn-hover-pop">
                 <Phone className="size-4" /> 707-525-4541
               </a>
-              <a href="https://instagram.com/Orange_playez" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:bg-background/40 transition btn-hover-pop">
+              <a href="https://instagram.com/Orange_playez" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:border-primary/60 hover:text-primary hover:bg-background/40 transition btn-hover-pop">
                 <Instagram className="size-4" /> @Orange_playez
               </a>
             </div>
