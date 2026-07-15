@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Play, Instagram, ArrowRight, Gamepad2, Megaphone, Phone, X, MessageCircle } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { CustomCursor } from "@/components/CustomCursor";
+import { useReveal } from "@/hooks/use-reveal";
+import { CountUp } from "@/components/CountUp";
 import heroImg from "@/assets/hero-gaming.jpg";
 import showreel from "@/assets/videos/showreel.mp4.asset.json";
 import demo from "@/assets/videos/demo.mp4.asset.json";
@@ -190,6 +192,10 @@ function Index() {
           borderRadius: "1rem",
         };
 
+  const statsReveal = useReveal<HTMLDivElement>();
+  const servicesReveal = useReveal<HTMLDivElement>();
+  const contactReveal = useReveal<HTMLDivElement>();
+
   return (
     <div className="min-h-screen">
       <CustomCursor />
@@ -201,9 +207,9 @@ function Index() {
             Orange<span className="text-gradient">Edits</span>
           </a>
           <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-            <a href="#services" className="hover:text-foreground transition">Work</a>
-            <a href="#services" className="hover:text-foreground transition">Services</a>
-            <a href="#contact" className="hover:text-foreground transition">Contact</a>
+            <a href="#services" className="hover:text-primary transition-colors">Work</a>
+            <a href="#services" className="hover:text-primary transition-colors">Services</a>
+            <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
           </div>
           <button onClick={() => setShowHireModal(true)} className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition shadow-glow btn-hover-pop">
             Hire me <ArrowRight className="size-4" />
@@ -212,39 +218,65 @@ function Index() {
       </header>
 
       {/* Hero */}
-      <section ref={heroRef} className="relative pt-32 pb-24 px-6 overflow-hidden">
+      <section ref={heroRef} className="relative pt-36 pb-32 md:pt-40 md:pb-40 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <img src={heroImg} alt="" width={1280} height={800} className="w-full h-full object-cover opacity-25" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
+          <img src={heroImg} alt="" width={1280} height={800} className="w-full h-full object-cover opacity-30" />
+          {/* bottom-to-top dark gradient for text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/20" />
+          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
         </div>
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[1fr_auto] gap-10 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-1.5 text-xs text-muted-foreground mb-8">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-1.5 text-xs text-muted-foreground mb-8 anim-fade-up" style={{ animationDelay: "60ms" }}>
               <span className="size-1.5 rounded-full bg-primary animate-pulse" />
               Available for new projects — June 2026
             </div>
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter">
+            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter anim-fade-up" style={{ animationDelay: "160ms" }}>
               Edits that hit <br />
               <span className="text-gradient">harder.</span> Stay longer.
             </h1>
-            <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl">
+            <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl anim-fade-up" style={{ animationDelay: "300ms" }}>
               I'm a video editor crafting fast-paced gaming montages and scroll-stopping ads. Stories cut with precision — and a little fire.
             </p>
-            <div className="mt-10 flex items-center gap-3">
+            <div className="mt-10 flex flex-wrap items-center gap-3 anim-fade-up" style={{ animationDelay: "440ms" }}>
               <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition btn-hover-pop">
-                Start a project
+                Start a project <ArrowRight className="size-4" />
               </a>
               <button
                 ref={showreelButtonRef}
                 onClick={openShowreel}
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-3 font-medium hover:bg-surface transition btn-hover-pop"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-5 py-3 font-medium hover:bg-surface hover:border-primary/60 transition btn-hover-pop"
               >
-                <Play className="size-4 fill-primary" /> Showreel
+                <Play className="size-4 fill-primary text-primary" /> Showreel
               </button>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Stats */}
+      <section className="px-6 pb-4">
+        <div
+          ref={statsReveal.ref}
+          className={`max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 transition-all duration-700 ease-out ${
+            statsReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          }`}
+        >
+          {[
+            { end: 10, suffix: "+", label: "Projects delivered" },
+            { end: 20, suffix: "k+", label: "Views generated" },
+            { end: 24, suffix: "h", label: "Avg turnaround" },
+          ].map((s) => (
+            <div key={s.label} className="rounded-2xl border border-border bg-surface/60 backdrop-blur p-6 text-center hover:border-primary/50 transition-colors">
+              <div className="font-display text-4xl md:text-5xl font-bold text-gradient">
+                <CountUp end={s.end} suffix={s.suffix} start={statsReveal.visible} />
+              </div>
+              <p className="mt-2 text-sm text-muted-foreground tracking-wide uppercase">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
 
       {/* Marquee */}
       <div className="border-y border-border/50 bg-surface/30 backdrop-blur py-5 overflow-hidden">
@@ -262,11 +294,18 @@ function Index() {
       </div>
 
       {/* Services */}
-      <section id="services" className="py-28 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section id="services" className="py-32 md:py-40 px-6">
+        <div
+          ref={servicesReveal.ref}
+          className={`max-w-7xl mx-auto transition-all duration-700 ease-out ${
+            servicesReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
           <div className="flex flex-wrap items-end justify-between gap-6 mb-16">
             <div>
-              <p className="text-primary font-medium text-sm tracking-widest uppercase mb-3">What I do</p>
+              <p className="text-primary font-medium text-sm tracking-widest uppercase mb-3 flex items-center gap-2">
+                <span className="text-primary">✦</span> What I do
+              </p>
               <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight max-w-2xl">
                 Edits built for <span className="text-gradient">attention</span>.
               </h2>
@@ -274,31 +313,67 @@ function Index() {
             <p className="text-muted-foreground max-w-md">Tap a category to pull out the reels — pacing, color, sound, and the little details that keep eyes glued.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
-            {categories.map((s) => (
-              <button
-                key={s.key}
-                ref={(el) => { cardRefs.current[s.key] = el; }}
-                onClick={() => openCategory(s)}
-                className="group relative rounded-2xl border border-border bg-surface p-6 hover:border-primary/50 btn-hover-pop text-left"
-                style={{ visibility: active?.key === s.key ? "hidden" : "visible" }}
-              >
-                <div className="size-12 rounded-xl bg-gradient-primary grid place-items-center text-primary-foreground mb-5 shadow-glow">
-                  <s.icon className="size-6" />
-                </div>
-                <h3 className="font-display text-xl font-semibold mb-2 flex items-center gap-2">{s.title} <ArrowRight className="size-4 transition group-hover:translate-x-1" /></h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-              </button>
-            ))}
+            {categories.map((s) => {
+              const previewVideo = s.videos[0]?.video;
+              return (
+                <button
+                  key={s.key}
+                  ref={(el) => { cardRefs.current[s.key] = el; }}
+                  onClick={() => openCategory(s)}
+                  className="group relative overflow-hidden rounded-2xl border border-border bg-surface p-6 text-left transition-all duration-300 ease-out hover:scale-[1.02] hover:border-primary/70 hover:shadow-[0_20px_60px_-20px_color-mix(in_oklab,var(--primary)_55%,transparent)]"
+                  style={{ visibility: active?.key === s.key ? "hidden" : "visible" }}
+                  onMouseEnter={(e) => {
+                    const v = e.currentTarget.querySelector("video");
+                    if (v) v.play().catch(() => {});
+                  }}
+                  onMouseLeave={(e) => {
+                    const v = e.currentTarget.querySelector("video");
+                    if (v) { v.pause(); v.currentTime = 0; }
+                  }}
+                >
+                  {previewVideo && (
+                    <>
+                      <video
+                        src={previewVideo}
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                        className="pointer-events-none absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-30 transition-opacity duration-500"
+                      />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface via-surface/80 to-surface/40 opacity-100 group-hover:opacity-90 transition-opacity duration-500" />
+                    </>
+                  )}
+                  <div className="relative">
+                    <div className="size-12 rounded-xl bg-gradient-primary grid place-items-center text-primary-foreground mb-5 shadow-glow transition-transform duration-300 group-hover:scale-110">
+                      <s.icon className="size-6" />
+                    </div>
+                    <h3 className="font-display text-xl font-semibold mb-2 flex items-center gap-2">
+                      {s.title}
+                      <ArrowRight className="size-4 text-primary transition-transform duration-300 group-hover:translate-x-1" />
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
 
 
       {/* Contact */}
-      <section id="contact" className="py-28 px-6">
-        <div className="max-w-4xl mx-auto relative rounded-3xl border border-border bg-surface overflow-hidden p-10 md:p-16 text-center shadow-card">
+      <section id="contact" className="py-32 md:py-40 px-6">
+        <div
+          ref={contactReveal.ref}
+          className={`max-w-4xl mx-auto relative rounded-3xl border border-border bg-surface overflow-hidden p-10 md:p-16 text-center shadow-card transition-all duration-700 ease-out ${
+            contactReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
           <div className="absolute -top-32 left-1/2 -translate-x-1/2 size-96 bg-gradient-primary opacity-30 blur-[100px] rounded-full pointer-events-none" />
-          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 relative">Work with me</p>
+          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 relative flex items-center justify-center gap-2">
+            <span className="text-primary">✦</span> Work with me <span className="text-primary">✦</span>
+          </p>
           <h2 className="font-display text-4xl md:text-6xl font-bold tracking-tight relative">
             Let's make something <br /><span className="text-gradient">unforgettable</span>.
           </h2>
@@ -310,10 +385,10 @@ function Index() {
               <a href="https://discord.gg/peuquP4ug" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition btn-hover-pop">
                 Join my Discord <ArrowRight className="size-4" />
               </a>
-              <a href="tel:7075254541" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:bg-background/40 transition btn-hover-pop">
+              <a href="tel:7075254541" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:border-primary/60 hover:text-primary hover:bg-background/40 transition btn-hover-pop">
                 <Phone className="size-4" /> 707-525-4541
               </a>
-              <a href="https://instagram.com/Orange_playez" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:bg-background/40 transition btn-hover-pop">
+              <a href="https://instagram.com/Orange_playez" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:border-primary/60 hover:text-primary hover:bg-background/40 transition btn-hover-pop">
                 <Instagram className="size-4" /> @Orange_playez
               </a>
             </div>
@@ -484,6 +559,14 @@ function Index() {
         @keyframes scroll {
           from { transform: translateX(0); }
           to { transform: translateX(-50%); }
+        }
+        @keyframes anim-fade-up {
+          from { opacity: 0; transform: translate3d(0, 24px, 0); }
+          to { opacity: 1; transform: translate3d(0, 0, 0); }
+        }
+        .anim-fade-up {
+          opacity: 0;
+          animation: anim-fade-up 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
       `}</style>
     </div>
