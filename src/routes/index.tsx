@@ -560,6 +560,14 @@ function Index() {
           from { transform: translateX(0); }
           to { transform: translateX(-50%); }
         }
+        @keyframes anim-fade-up {
+          from { opacity: 0; transform: translate3d(0, 24px, 0); }
+          to { opacity: 1; transform: translate3d(0, 0, 0); }
+        }
+        .anim-fade-up {
+          opacity: 0;
+          animation: anim-fade-up 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
       `}</style>
     </div>
   );
