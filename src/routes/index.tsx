@@ -294,11 +294,18 @@ function Index() {
       </div>
 
       {/* Services */}
-      <section id="services" className="py-28 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section id="services" className="py-32 md:py-40 px-6">
+        <div
+          ref={servicesReveal.ref}
+          className={`max-w-7xl mx-auto transition-all duration-700 ease-out ${
+            servicesReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
           <div className="flex flex-wrap items-end justify-between gap-6 mb-16">
             <div>
-              <p className="text-primary font-medium text-sm tracking-widest uppercase mb-3">What I do</p>
+              <p className="text-primary font-medium text-sm tracking-widest uppercase mb-3 flex items-center gap-2">
+                <span className="text-primary">✦</span> What I do
+              </p>
               <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight max-w-2xl">
                 Edits built for <span className="text-gradient">attention</span>.
               </h2>
@@ -306,24 +313,63 @@ function Index() {
             <p className="text-muted-foreground max-w-md">Tap a category to pull out the reels — pacing, color, sound, and the little details that keep eyes glued.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
-            {categories.map((s) => (
-              <button
-                key={s.key}
-                ref={(el) => { cardRefs.current[s.key] = el; }}
-                onClick={() => openCategory(s)}
-                className="group relative rounded-2xl border border-border bg-surface p-6 hover:border-primary/50 btn-hover-pop text-left"
-                style={{ visibility: active?.key === s.key ? "hidden" : "visible" }}
-              >
-                <div className="size-12 rounded-xl bg-gradient-primary grid place-items-center text-primary-foreground mb-5 shadow-glow">
-                  <s.icon className="size-6" />
-                </div>
-                <h3 className="font-display text-xl font-semibold mb-2 flex items-center gap-2">{s.title} <ArrowRight className="size-4 transition group-hover:translate-x-1" /></h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-              </button>
-            ))}
+            {categories.map((s) => {
+              const previewVideo = s.videos[0]?.video;
+              return (
+                <button
+                  key={s.key}
+                  ref={(el) => { cardRefs.current[s.key] = el; }}
+                  onClick={() => openCategory(s)}
+                  className="group relative overflow-hidden rounded-2xl border border-border bg-surface p-6 text-left transition-all duration-300 ease-out hover:scale-[1.02] hover:border-primary/70 hover:shadow-[0_20px_60px_-20px_color-mix(in_oklab,var(--primary)_55%,transparent)]"
+                  style={{ visibility: active?.key === s.key ? "hidden" : "visible" }}
+                  onMouseEnter={(e) => {
+                    const v = e.currentTarget.querySelector("video");
+                    if (v) v.play().catch(() => {});
+                  }}
+                  onMouseLeave={(e) => {
+                    const v = e.currentTarget.querySelector("video");
+                    if (v) { v.pause(); v.currentTime = 0; }
+                  }}
+                >
+                  {previewVideo && (
+                    <>
+                      <video
+                        src={previewVideo}
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                        className="pointer-events-none absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-30 transition-opacity duration-500"
+                      />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface via-surface/80 to-surface/40 opacity-100 group-hover:opacity-90 transition-opacity duration-500" />
+                    </>
+                  )}
+                  <div className="relative">
+                    <div className="size-12 rounded-xl bg-gradient-primary grid place-items-center text-primary-foreground mb-5 shadow-glow transition-transform duration-300 group-hover:scale-110">
+                      <s.icon className="size-6" />
+                    </div>
+                    <h3 className="font-display text-xl font-semibold mb-2 flex items-center gap-2">
+                      {s.title}
+                      <ArrowRight className="size-4 text-primary transition-transform duration-300 group-hover:translate-x-1" />
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
+
+
+      {/* Contact */}
+      <section id="contact" className="py-32 md:py-40 px-6">
+        <div
+          ref={contactReveal.ref}
+          className={`max-w-4xl mx-auto relative rounded-3xl border border-border bg-surface overflow-hidden p-10 md:p-16 text-center shadow-card transition-all duration-700 ease-out ${
+            contactReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
 
 
       {/* Contact */}
