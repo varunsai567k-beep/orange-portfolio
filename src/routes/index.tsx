@@ -3,7 +3,6 @@ import { Play, Instagram, ArrowRight, Gamepad2, Megaphone, Phone, X, MessageCirc
 import { useState, useRef, useEffect } from "react";
 import { CustomCursor } from "@/components/CustomCursor";
 import { useReveal } from "@/hooks/use-reveal";
-import { CountUp } from "@/components/CountUp";
 import heroImg from "@/assets/hero-gaming.jpg";
 import showreel from "@/assets/videos/showreel.mp4.asset.json";
 import demo from "@/assets/videos/demo.mp4.asset.json";
