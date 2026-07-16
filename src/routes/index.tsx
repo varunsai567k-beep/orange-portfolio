@@ -252,30 +252,6 @@ function Index() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="px-6 pb-4">
-        <div
-          ref={statsReveal.ref}
-          className={`max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 transition-all duration-700 ease-out ${
-            statsReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-        >
-          {[
-            { end: 10, suffix: "+", label: "Projects delivered" },
-            { end: 20, suffix: "k+", label: "Views generated" },
-            { end: 24, suffix: "h", label: "Avg turnaround" },
-          ].map((s) => (
-            <div key={s.label} className="rounded-2xl border border-border bg-surface/60 backdrop-blur p-6 text-center hover:border-primary/50 transition-colors">
-              <div className="font-display text-4xl md:text-5xl font-bold text-gradient">
-                <CountUp end={s.end} suffix={s.suffix} start={statsReveal.visible} />
-              </div>
-              <p className="mt-2 text-sm text-muted-foreground tracking-wide uppercase">{s.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-
       {/* Marquee */}
       <div className="border-y border-border/50 bg-surface/30 backdrop-blur py-5 overflow-hidden">
         <div className="flex gap-12 whitespace-nowrap animate-[scroll_30s_linear_infinite] text-muted-foreground font-display text-xl">
