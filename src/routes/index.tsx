@@ -191,7 +191,6 @@ function Index() {
           borderRadius: "1rem",
         };
 
-  const statsReveal = useReveal<HTMLDivElement>();
   const servicesReveal = useReveal<HTMLDivElement>();
   const contactReveal = useReveal<HTMLDivElement>();
 
