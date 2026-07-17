@@ -218,7 +218,7 @@ function Index() {
       {/* Hero */}
       <section ref={heroRef} className="relative pt-36 pb-32 md:pt-40 md:pb-40 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <img src={heroImg} alt="" width={1280} height={800} className="w-full h-full object-cover opacity-30" />
+          <img src={heroImg} alt="Gaming setup with neon lighting — Orange Edits portfolio hero" width={1280} height={800} className="w-full h-full object-cover opacity-30" />
           {/* bottom-to-top dark gradient for text contrast */}
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/20" />
           <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
