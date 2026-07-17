@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Play, Instagram, ArrowRight, Gamepad2, Megaphone, Phone, X, MessageCircle } from "lucide-react";
+import { Play, Instagram, ArrowRight, Gamepad2, Megaphone, X, MessageCircle, Sparkles, MessageSquare, Wand2, Send, Quote } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { CustomCursor } from "@/components/CustomCursor";
 import { useReveal } from "@/hooks/use-reveal";
@@ -227,7 +227,7 @@ function Index() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-1.5 text-xs text-muted-foreground mb-8 anim-fade-up" style={{ animationDelay: "60ms" }}>
               <span className="size-1.5 rounded-full bg-primary animate-pulse" />
-              Available for new projects — June 2026
+              Available for new projects — July 2026
             </div>
             <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter anim-fade-up" style={{ animationDelay: "160ms" }}>
               Edits that hit <br />
@@ -335,6 +335,17 @@ function Index() {
         </div>
       </section>
 
+      {/* About */}
+      <AboutSection />
+
+      {/* Process */}
+      <ProcessSection />
+
+      {/* Testimonials */}
+      <TestimonialsSection />
+
+
+
 
       {/* Contact */}
       <section id="contact" className="py-32 md:py-40 px-6">
@@ -358,9 +369,6 @@ function Index() {
             <div className="flex flex-wrap items-center justify-center gap-3">
               <a href="https://discord.gg/peuquP4ug" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition btn-hover-pop">
                 Join my Discord <ArrowRight className="size-4" />
-              </a>
-              <a href="tel:7075254541" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:border-primary/60 hover:text-primary hover:bg-background/40 transition btn-hover-pop">
-                <Phone className="size-4" /> 707-525-4541
               </a>
               <a href="https://instagram.com/Orange_playez" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:border-primary/60 hover:text-primary hover:bg-background/40 transition btn-hover-pop">
                 <Instagram className="size-4" /> @Orange_playez
@@ -546,3 +554,138 @@ function Index() {
     </div>
   );
 }
+
+function AboutSection() {
+  const r = useReveal<HTMLDivElement>();
+  return (
+    <section id="about" className="py-32 md:py-40 px-6 border-t border-border/50">
+      <div
+        ref={r.ref}
+        className={`max-w-7xl mx-auto grid md:grid-cols-[1fr_1.2fr] gap-12 items-center transition-all duration-700 ease-out ${
+          r.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
+        <div>
+          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-3 flex items-center gap-2">
+            <span className="text-primary">✦</span> About
+          </p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight">
+            Editor obsessed with <span className="text-gradient">pacing</span>.
+          </h2>
+        </div>
+        <div className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed">
+          <p>
+            I'm Orange — a freelance video editor working with creators and brands on high-retention short-form content. Four years cutting gaming montages taught me one thing: every frame either earns attention or loses it.
+          </p>
+          <p>
+            I work primarily in <span className="text-foreground font-medium">Adobe Premiere Pro</span> and <span className="text-foreground font-medium">After Effects</span>, with sound design in Audition. Every edit gets rhythm-locked cuts, custom SFX layering, color, and motion — no templates.
+          </p>
+          <div className="flex flex-wrap gap-2 pt-2">
+            {["Premiere Pro", "After Effects", "DaVinci Resolve", "Audition", "Photoshop"].map((t) => (
+              <span key={t} className="text-xs px-3 py-1.5 rounded-full border border-border bg-surface/60 text-foreground/80">
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProcessSection() {
+  const r = useReveal<HTMLDivElement>();
+  const steps = [
+    { icon: MessageSquare, title: "Discovery", desc: "We hop on a quick call or DM to align on goals, tone, references, and delivery window." },
+    { icon: Wand2, title: "First draft", desc: "You get a rough cut within 3–5 days — pacing, structure, sound, and color already dialed in." },
+    { icon: Sparkles, title: "Revisions", desc: "Two rounds of revisions included. Timestamped notes keep everything precise and fast." },
+    { icon: Send, title: "Delivery", desc: "Final export in the platform ratios you need — plus source files if the package includes them." },
+  ];
+  return (
+    <section id="process" className="py-32 md:py-40 px-6 border-t border-border/50 bg-surface/20">
+      <div
+        ref={r.ref}
+        className={`max-w-7xl mx-auto transition-all duration-700 ease-out ${
+          r.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
+        <div className="flex flex-wrap items-end justify-between gap-6 mb-16">
+          <div>
+            <p className="text-primary font-medium text-sm tracking-widest uppercase mb-3 flex items-center gap-2">
+              <span className="text-primary">✦</span> Process
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight max-w-2xl">
+              How it <span className="text-gradient">works</span>.
+            </h2>
+          </div>
+          <p className="text-muted-foreground max-w-md">A tight, transparent workflow — from first message to final export — with no guesswork.</p>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {steps.map((s, i) => (
+            <div key={s.title} className="relative rounded-2xl border border-border bg-surface p-6 hover:border-primary/60 transition-colors">
+              <div className="text-primary/70 font-display text-sm mb-4">0{i + 1}</div>
+              <div className="size-11 rounded-xl bg-gradient-primary grid place-items-center text-primary-foreground mb-4 shadow-glow">
+                <s.icon className="size-5" />
+              </div>
+              <h3 className="font-display text-lg font-semibold mb-2">{s.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TestimonialsSection() {
+  const r = useReveal<HTMLDivElement>();
+  const quotes = [
+    {
+      quote: "Orange gets pacing in a way most editors don't. My montages started actually landing after we worked together.",
+      name: "Kryptix",
+      role: "Gaming creator",
+    },
+    {
+      quote: "Turnaround is stupid fast and the edits hit. First draft usually needs almost no changes.",
+      name: "Lost",
+      role: "FPS content creator",
+    },
+    {
+      quote: "Reliable, communicative, and the ad creative he sent us performed better than what our in-house team was cutting.",
+      name: "Legend Media",
+      role: "Short-form ad agency",
+    },
+  ];
+  return (
+    <section id="testimonials" className="py-32 md:py-40 px-6 border-t border-border/50">
+      <div
+        ref={r.ref}
+        className={`max-w-7xl mx-auto transition-all duration-700 ease-out ${
+          r.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
+        <div className="mb-16">
+          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-3 flex items-center gap-2">
+            <span className="text-primary">✦</span> Testimonials
+          </p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight max-w-3xl">
+            What clients <span className="text-gradient">say</span>.
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-5">
+          {quotes.map((q) => (
+            <figure key={q.name} className="relative rounded-2xl border border-border bg-surface p-7 flex flex-col">
+              <Quote className="size-6 text-primary/70 mb-4" />
+              <blockquote className="text-foreground/90 leading-relaxed flex-1">"{q.quote}"</blockquote>
+              <figcaption className="mt-6 pt-5 border-t border-border/60">
+                <div className="font-display font-semibold">{q.name}</div>
+                <div className="text-xs text-muted-foreground">{q.role}</div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
