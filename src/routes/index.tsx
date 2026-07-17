@@ -370,9 +370,6 @@ function Index() {
               <a href="https://discord.gg/peuquP4ug" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition btn-hover-pop">
                 Join my Discord <ArrowRight className="size-4" />
               </a>
-              <a href="tel:7075254541" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:border-primary/60 hover:text-primary hover:bg-background/40 transition btn-hover-pop">
-                <Phone className="size-4" /> 707-525-4541
-              </a>
               <a href="https://instagram.com/Orange_playez" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium hover:border-primary/60 hover:text-primary hover:bg-background/40 transition btn-hover-pop">
                 <Instagram className="size-4" /> @Orange_playez
               </a>
