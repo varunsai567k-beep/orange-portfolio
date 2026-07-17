@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Play, Instagram, ArrowRight, Gamepad2, Megaphone, Phone, X, MessageCircle } from "lucide-react";
+import { Play, Instagram, ArrowRight, Gamepad2, Megaphone, X, MessageCircle, Sparkles, MessageSquare, Wand2, Send, Quote } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { CustomCursor } from "@/components/CustomCursor";
 import { useReveal } from "@/hooks/use-reveal";
