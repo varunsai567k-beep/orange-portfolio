@@ -227,7 +227,7 @@ function Index() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-1.5 text-xs text-muted-foreground mb-8 anim-fade-up" style={{ animationDelay: "60ms" }}>
               <span className="size-1.5 rounded-full bg-primary animate-pulse" />
-              Available for new projects — June 2026
+              Available for new projects — July 2026
             </div>
             <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter anim-fade-up" style={{ animationDelay: "160ms" }}>
               Edits that hit <br />
