@@ -267,6 +267,15 @@ function Index() {
         </div>
       </div>
 
+      {/* About */}
+      <AboutSection />
+
+      {/* Process */}
+      <ProcessSection />
+
+      {/* Testimonials */}
+      <TestimonialsSection />
+
       {/* Services */}
       <section id="services" className="py-32 md:py-40 px-6">
         <div
@@ -334,18 +343,6 @@ function Index() {
           </div>
         </div>
       </section>
-
-      {/* About */}
-      <AboutSection />
-
-      {/* Process */}
-      <ProcessSection />
-
-      {/* Testimonials */}
-      <TestimonialsSection />
-
-
-
 
       {/* Contact */}
       <section id="contact" className="py-32 md:py-40 px-6">
