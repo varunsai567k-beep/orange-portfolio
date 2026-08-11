@@ -33,7 +33,7 @@ type Category = {
   title: string;
   desc: string;
   tagline: string;
-  videos: { title: string; desc: string; video: string }[];
+  videos: { title: string; desc: string; video?: string; youtube?: string }[];
 };
 
 const categories: Category[] = [
@@ -51,6 +51,7 @@ const categories: Category[] = [
       { title: "Showreel 3", desc: "Kryptix showreel.", video: showreel3.url },
       { title: "Lost Showreel", desc: "Cinematic gaming edit.", video: lostShowreel.url },
       { title: "Legend Showreel", desc: "Legendary gaming moments.", video: legendShowreel.url },
+      { title: "Latest Gaming Edit", desc: "Newest gaming showreel.", youtube: "dVpV_52rWm8" },
     ],
   },
   {
@@ -422,7 +423,17 @@ function Index() {
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {active.videos.map((v) => (
                     <div key={v.title} className="rounded-2xl border border-border bg-surface-elevated/40 overflow-hidden">
-                      <video src={v.video} controls className="w-full aspect-video object-cover bg-black" />
+                      {v.youtube ? (
+                        <iframe
+                          src={`https://www.youtube.com/embed/${v.youtube}`}
+                          title={v.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="w-full aspect-video bg-black"
+                        />
+                      ) : (
+                        <video src={v.video} controls className="w-full aspect-video object-cover bg-black" />
+                      )}
                       <div className="p-4">
                         <h3 className="font-display font-semibold">{v.title}</h3>
                         <p className="text-sm text-muted-foreground mt-1">{v.desc}</p>
