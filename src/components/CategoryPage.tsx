@@ -6,6 +6,7 @@ export interface VideoItem {
   desc: string;
   thumb?: string;
   video?: string;
+  youtube?: string;
   duration?: string;
 }
 
@@ -50,7 +51,15 @@ export function CategoryPage({
           {videos.map((v) => (
             <div key={v.title} className="flex flex-col gap-3">
               <article className="group relative overflow-hidden rounded-2xl border border-border bg-surface aspect-video md:aspect-[4/5] hover:border-primary/50 hover:shadow-card transition-all">
-                {v.video ? (
+                {v.youtube ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${v.youtube}`}
+                    title={v.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full bg-black"
+                  />
+                ) : v.video ? (
                   <video
                     src={v.video}
                     poster={v.thumb}
