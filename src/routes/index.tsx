@@ -5,13 +5,6 @@ import { CustomCursor } from "@/components/CustomCursor";
 import { useReveal } from "@/hooks/use-reveal";
 import heroImg from "@/assets/hero-gaming.jpg";
 import showreel from "@/assets/videos/showreel.mp4.asset.json";
-import demo from "@/assets/videos/demo.mp4.asset.json";
-import minecraft from "@/assets/videos/demo-minecraft-reel.mp4.asset.json";
-
-import showreeel2 from "@/assets/videos/showreeel2.mp4.asset.json";
-import showreel3 from "@/assets/videos/showreel3.mp4.asset.json";
-import lostShowreel from "@/assets/videos/lost-showreel.mp4.asset.json";
-import legendShowreel from "@/assets/videos/legend-showreel.mp4.asset.json";
 import demoReel from "@/assets/videos/demo-reel.mp4.asset.json";
 import projectMeme from "@/assets/videos/project-meme.mp4.asset.json";
 
@@ -44,13 +37,6 @@ const categories: Category[] = [
     desc: "Fast-paced montages, highlights, and viral clips with rhythm-locked cuts.",
     tagline: "Adrenaline-packed montages cut to the beat and built for the algorithm.",
     videos: [
-      { title: "Demo", desc: "Action-packed gameplay edit.", video: demo.url },
-      { title: "Minecraft Demo Reel", desc: "Cinematic Minecraft moments.", video: minecraft.url },
-      
-      { title: "Showreel 2", desc: "Gaming montage reel.", video: showreeel2.url },
-      { title: "Showreel 3", desc: "Kryptix showreel.", video: showreel3.url },
-      { title: "Lost Showreel", desc: "Cinematic gaming edit.", video: lostShowreel.url },
-      { title: "Legend Showreel", desc: "Legendary gaming moments.", video: legendShowreel.url },
       { title: "Latest Gaming Edit", desc: "Newest gaming showreel.", youtube: "dVpV_52rWm8" },
     ],
   },
