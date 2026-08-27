@@ -15,6 +15,7 @@ export const Route = createFileRoute("/work/gaming")({
 
 const videos = [
   { title: "Latest Gaming Edit", desc: "Newest gaming showreel.", youtube: "dVpV_52rWm8" },
+  { title: "Gaming Highlights", desc: "Recent gaming clips.", youtube: "KGoJlkDkkGk" },
 ];
 
 function GamingPage() {
