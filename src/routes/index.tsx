@@ -38,6 +38,7 @@ const categories: Category[] = [
     tagline: "Adrenaline-packed montages cut to the beat and built for the algorithm.",
     videos: [
       { title: "Latest Gaming Edit", desc: "Newest gaming showreel.", youtube: "dVpV_52rWm8" },
+      { title: "Gaming Highlights", desc: "Recent gaming clips.", youtube: "KGoJlkDkkGk" },
     ],
   },
   {
@@ -411,7 +412,7 @@ function Index() {
                     <div key={v.title} className="rounded-2xl border border-border bg-surface-elevated/40 overflow-hidden">
                       {v.youtube ? (
                         <iframe
-                          src={`https://www.youtube.com/embed/${v.youtube}`}
+                          src={`https://www.youtube.com/embed/${v.youtube}?modestbranding=1`}
                           title={v.title}
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen

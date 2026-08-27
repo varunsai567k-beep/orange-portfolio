@@ -53,7 +53,7 @@ export function CategoryPage({
               <article className="group relative overflow-hidden rounded-2xl border border-border bg-surface aspect-video md:aspect-[4/5] hover:border-primary/50 hover:shadow-card transition-all">
                 {v.youtube ? (
                   <iframe
-                    src={`https://www.youtube.com/embed/${v.youtube}`}
+                    src={`https://www.youtube.com/embed/${v.youtube}?modestbranding=1`}
                     title={v.title}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
