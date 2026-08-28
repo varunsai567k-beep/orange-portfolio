@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Play, Instagram, ArrowRight, X, MessageCircle, Sparkles, MessageSquare, Wand2, Send, Quote } from "lucide-react";
+import { Play, Instagram, ArrowRight, X, MessageCircle, Sparkles, MessageSquare, Wand2, Send } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { CustomCursor } from "@/components/CustomCursor";
 import { useReveal } from "@/hooks/use-reveal";
@@ -203,9 +203,6 @@ function Index() {
 
       {/* Process */}
       <ProcessSection />
-
-      {/* Testimonials */}
-      <TestimonialsSection />
 
       {/* Contact */}
       <section id="contact" className="py-24 md:py-28 px-6">
@@ -452,68 +449,6 @@ function ProcessSection() {
               <h3 className="font-display text-lg font-semibold mb-2">{s.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
             </div>
-          ))}
-
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TestimonialsSection() {
-  const r = useReveal<HTMLDivElement>();
-  const quotes = [
-    {
-      quote: "Orange gets pacing in a way most editors don't. My montages started actually landing after we worked together.",
-      name: "Kryptix",
-      role: "Gaming creator",
-    },
-    {
-      quote: "Turnaround is stupid fast and the edits hit. First draft usually needs almost no changes.",
-      name: "Lost",
-      role: "FPS content creator",
-    },
-    {
-      quote: "Reliable, communicative, and the clips he sent us outperformed what our in-house team was cutting.",
-      name: "Legend Media",
-      role: "Short-form agency",
-    },
-  ];
-  return (
-    <section id="testimonials" className="py-24 md:py-28 px-6 border-t border-border/50">
-      <div
-        ref={r.ref}
-        className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${
-          r.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
-      >
-        <div className="text-center mb-12">
-          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-3">Testimonials</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight">
-            What clients <span className="text-gradient">say</span>.
-          </h2>
-        </div>
-        <div className="grid md:grid-cols-3 gap-5">
-          {quotes.map((q, i) => (
-            <figure
-              key={q.name}
-              className={`relative rounded-2xl border border-border bg-surface p-7 flex flex-col transition-all duration-700 ease-out hover:border-primary/60 hover:-translate-y-1 ${
-                r.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: `${i * 120}ms` }}
-            >
-              <Quote className="size-6 text-primary/70 mb-4" />
-              <blockquote className="text-foreground/90 leading-relaxed flex-1">"{q.quote}"</blockquote>
-              <figcaption className="mt-6 pt-5 border-t border-border/60 flex items-center gap-3">
-                <div className="size-10 rounded-full bg-gradient-primary grid place-items-center text-primary-foreground font-display font-bold text-sm shrink-0 shadow-glow">
-                  {q.name.slice(0, 1)}
-                </div>
-                <div>
-                  <div className="font-display font-semibold">{q.name}</div>
-                  <div className="text-xs text-muted-foreground">{q.role}</div>
-                </div>
-              </figcaption>
-            </figure>
           ))}
 
         </div>
