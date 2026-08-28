@@ -137,22 +137,6 @@ function Index() {
         </div>
       </section>
 
-      {/* Stats strip */}
-      <div className="border-y border-border/50 bg-surface/30 backdrop-blur">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-border/50">
-          {[
-            { value: "4+", label: "Years experience" },
-            { value: "24h", label: "Response time" },
-            { value: "100%", label: "Rhythm-locked edits" },
-            { value: "2", label: "Revision rounds included" },
-          ].map((s) => (
-            <div key={s.label} className="px-5 py-7 text-center">
-              <div className="font-display text-3xl md:text-4xl font-bold text-primary tracking-tight">{s.value}</div>
-              <div className="mt-1.5 text-xs md:text-sm text-muted-foreground">{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* Marquee */}
       <div className="border-b border-border/50 bg-surface/20 backdrop-blur py-4 overflow-hidden">
