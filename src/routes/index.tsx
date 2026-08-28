@@ -93,21 +93,22 @@ function Index() {
             Orange<span className="text-gradient">Edits</span>
           </a>
           <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-            <a href="#work" className="hover:text-primary transition-colors">Work</a>
-            <a href="#about" className="hover:text-primary transition-colors">About</a>
-            <a href="#process" className="hover:text-primary transition-colors">Process</a>
-            <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
+            <a href="#work" className="nav-link hover:text-primary transition-colors">Work</a>
+            <a href="#about" className="nav-link hover:text-primary transition-colors">About</a>
+            <a href="#process" className="nav-link hover:text-primary transition-colors">Process</a>
+            <a href="#contact" className="nav-link hover:text-primary transition-colors">Contact</a>
           </div>
-          <button onClick={() => setShowHireModal(true)} className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition shadow-glow btn-hover-pop">
+          <button onClick={() => setShowHireModal(true)} className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold transition-all duration-200 hover:scale-[1.03] hover:shadow-glow">
             Hire me <ArrowRight className="size-4" />
           </button>
+
         </nav>
       </header>
 
       {/* Hero */}
       <section ref={heroRef} className="relative pt-36 pb-24 md:pt-44 md:pb-32 px-6 overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <img src={heroImg} alt="Gaming setup with neon lighting — Orange Edits portfolio hero" width={1280} height={800} className="w-full h-full object-cover opacity-25" />
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <img src={heroImg} alt="Gaming setup with neon lighting — Orange Edits portfolio hero" width={1280} height={800} className="ken-burns w-full h-full object-cover opacity-25" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/30" />
         </div>
         <div className="max-w-4xl mx-auto text-center">
@@ -122,13 +123,13 @@ function Index() {
             I cut fast-paced montages, highlights and viral clips — rhythm-locked, sound-designed, and built to keep people watching.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3 anim-fade-up" style={{ animationDelay: "440ms" }}>
-            <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-3 font-medium shadow-glow hover:opacity-90 transition btn-hover-pop">
+            <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-6 py-3 font-semibold transition-all duration-200 hover:scale-[1.03] hover:shadow-glow">
               Start a project <ArrowRight className="size-4" />
             </a>
             <button
               ref={showreelButtonRef}
               onClick={openShowreel}
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-5 py-3 font-medium hover:bg-surface hover:border-primary/60 transition btn-hover-pop"
+              className="inline-flex items-center gap-2 rounded-full border border-primary/50 bg-transparent text-foreground px-6 py-3 font-medium transition-all duration-200 hover:scale-[1.03] hover:bg-primary/10 hover:border-primary"
             >
               <Play className="size-4 fill-primary text-primary" /> Watch showreel
             </button>
@@ -136,10 +137,27 @@ function Index() {
         </div>
       </section>
 
+      {/* Stats strip */}
+      <div className="border-y border-border/50 bg-surface/30 backdrop-blur">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-border/50">
+          {[
+            { value: "4+", label: "Years experience" },
+            { value: "24h", label: "Response time" },
+            { value: "100%", label: "Rhythm-locked edits" },
+            { value: "2", label: "Revision rounds included" },
+          ].map((s) => (
+            <div key={s.label} className="px-5 py-7 text-center">
+              <div className="font-display text-3xl md:text-4xl font-bold text-primary tracking-tight">{s.value}</div>
+              <div className="mt-1.5 text-xs md:text-sm text-muted-foreground">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Marquee */}
-      <div className="border-y border-border/50 bg-surface/30 backdrop-blur py-4 overflow-hidden">
-        <div className="flex gap-12 whitespace-nowrap animate-[scroll_30s_linear_infinite] text-muted-foreground font-display text-lg">
-          {Array.from({ length: 2 }).map((_, i) => (
+      <div className="border-b border-border/50 bg-surface/20 backdrop-blur py-4 overflow-hidden">
+        <div className="flex gap-12 whitespace-nowrap animate-[scroll_30s_linear_infinite] text-muted-foreground font-display text-lg w-max">
+          {Array.from({ length: 4 }).map((_, i) => (
             <div key={i} className="flex gap-12 shrink-0">
               {["Gaming Montages", "Highlights", "Sound Design", "Motion Graphics"].map((t) => (
                 <span key={t} className="flex items-center gap-12">
@@ -150,6 +168,7 @@ function Index() {
           ))}
         </div>
       </div>
+
 
       {/* Work */}
       <section id="work" className="py-24 md:py-28 px-6">
@@ -166,23 +185,32 @@ function Index() {
             </h2>
             <p className="mt-4 text-muted-foreground max-w-xl mx-auto">Hit play — every cut, sound and transition is made by hand, no templates.</p>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {works.map((w) => (
-              <div key={w.title} className="rounded-2xl border border-border bg-surface overflow-hidden transition-all duration-300 hover:border-primary/60 hover:shadow-card">
-                <iframe
-                  src={`https://www.youtube.com/embed/${w.youtube}?modestbranding=1&rel=0`}
-                  title={w.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full aspect-video bg-black"
-                />
+          <div className="grid sm:grid-cols-2 gap-6">
+            {works.map((w, i) => (
+              <div
+                key={w.title}
+                className={`group rounded-2xl border border-border bg-surface overflow-hidden transition-all duration-500 ease-out hover:border-primary/70 hover:shadow-card hover:-translate-y-1 ${
+                  workReveal.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`}
+                style={{ transitionDelay: `${i * 120}ms` }}
+              >
+                <div className="relative overflow-hidden">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${w.youtube}?modestbranding=1&rel=0`}
+                    title={w.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full aspect-video bg-black transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                  />
+                </div>
                 <div className="p-5">
-                  <h3 className="font-display font-semibold text-lg">{w.title}</h3>
+                  <h3 className="font-display font-semibold text-lg transition-colors group-hover:text-primary">{w.title}</h3>
                   <p className="text-sm text-muted-foreground mt-1">{w.desc}</p>
                 </div>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
@@ -334,7 +362,31 @@ function Index() {
           opacity: 0;
           animation: anim-fade-up 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
+        @keyframes ken-burns {
+          0% { transform: scale(1) translate3d(0, 0, 0); }
+          100% { transform: scale(1.15) translate3d(0, -1.5%, 0); }
+        }
+        .ken-burns {
+          animation: ken-burns 28s ease-in-out infinite alternate;
+          will-change: transform;
+        }
+        .nav-link { position: relative; }
+        .nav-link::after {
+          content: "";
+          position: absolute;
+          left: 0; bottom: -4px;
+          height: 2px; width: 100%;
+          background: var(--primary);
+          transform: scaleX(0);
+          transform-origin: right;
+          transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+        @media (prefers-reduced-motion: reduce) {
+          .ken-burns { animation: none; }
+        }
       `}</style>
+
     </div>
   );
 }
@@ -400,8 +452,16 @@ function ProcessSection() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {steps.map((s, i) => (
-            <div key={s.title} className="relative rounded-2xl border border-border bg-surface p-6 hover:border-primary/60 transition-colors">
-              <div className="text-primary/70 font-display text-sm mb-4">0{i + 1}</div>
+            <div
+              key={s.title}
+              className={`relative rounded-2xl border border-border bg-surface p-6 hover:border-primary/60 hover:-translate-y-1 hover:shadow-card transition-all duration-700 ease-out ${
+                r.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: `${i * 130}ms` }}
+            >
+              <div className="inline-flex items-center justify-center size-8 rounded-full border border-primary/40 text-primary font-display text-xs font-bold mb-4">
+                0{i + 1}
+              </div>
               <div className="size-11 rounded-xl bg-gradient-primary grid place-items-center text-primary-foreground mb-4 shadow-glow">
                 <s.icon className="size-5" />
               </div>
@@ -409,6 +469,7 @@ function ProcessSection() {
               <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
             </div>
           ))}
+
         </div>
       </div>
     </section>
@@ -449,16 +510,28 @@ function TestimonialsSection() {
           </h2>
         </div>
         <div className="grid md:grid-cols-3 gap-5">
-          {quotes.map((q) => (
-            <figure key={q.name} className="relative rounded-2xl border border-border bg-surface p-7 flex flex-col">
+          {quotes.map((q, i) => (
+            <figure
+              key={q.name}
+              className={`relative rounded-2xl border border-border bg-surface p-7 flex flex-col transition-all duration-700 ease-out hover:border-primary/60 hover:-translate-y-1 ${
+                r.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: `${i * 120}ms` }}
+            >
               <Quote className="size-6 text-primary/70 mb-4" />
               <blockquote className="text-foreground/90 leading-relaxed flex-1">"{q.quote}"</blockquote>
-              <figcaption className="mt-6 pt-5 border-t border-border/60">
-                <div className="font-display font-semibold">{q.name}</div>
-                <div className="text-xs text-muted-foreground">{q.role}</div>
+              <figcaption className="mt-6 pt-5 border-t border-border/60 flex items-center gap-3">
+                <div className="size-10 rounded-full bg-gradient-primary grid place-items-center text-primary-foreground font-display font-bold text-sm shrink-0 shadow-glow">
+                  {q.name.slice(0, 1)}
+                </div>
+                <div>
+                  <div className="font-display font-semibold">{q.name}</div>
+                  <div className="text-xs text-muted-foreground">{q.role}</div>
+                </div>
               </figcaption>
             </figure>
           ))}
+
         </div>
       </div>
     </section>
