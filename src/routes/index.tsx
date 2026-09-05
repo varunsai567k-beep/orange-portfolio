@@ -20,9 +20,10 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const works = [
+const works: { title: string; desc: string; youtube?: string; video?: string }[] = [
   { title: "Latest Gaming Edit", desc: "Newest gaming showreel — rhythm-locked cuts and custom SFX.", youtube: "dVpV_52rWm8" },
   { title: "Gaming Highlights", desc: "Recent highlight reel built for retention.", youtube: "KGoJlkDkkGk" },
+  { title: "New Gaming Edit", desc: "Punchy short-form cut with layered sound design.", video: "/videos/gaming-edit-3.mp4" },
 ];
 
 type Rect = { top: number; left: number; width: number; height: number };
@@ -179,13 +180,23 @@ function Index() {
                 style={{ transitionDelay: `${i * 120}ms` }}
               >
                 <div className="relative overflow-hidden">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${w.youtube}?modestbranding=1&rel=0`}
-                    title={w.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full aspect-video bg-black transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                  />
+                  {w.youtube ? (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${w.youtube}?modestbranding=1&rel=0`}
+                      title={w.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full aspect-video bg-black transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <video
+                      src={w.video}
+                      controls
+                      preload="metadata"
+                      playsInline
+                      className="w-full aspect-video bg-black object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    />
+                  )}
                 </div>
                 <div className="p-5">
                   <h3 className="font-display font-semibold text-lg transition-colors group-hover:text-primary">{w.title}</h3>
