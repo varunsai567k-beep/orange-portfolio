@@ -20,9 +20,10 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const works = [
+const works: { title: string; desc: string; youtube?: string; video?: string }[] = [
   { title: "Latest Gaming Edit", desc: "Newest gaming showreel — rhythm-locked cuts and custom SFX.", youtube: "dVpV_52rWm8" },
   { title: "Gaming Highlights", desc: "Recent highlight reel built for retention.", youtube: "KGoJlkDkkGk" },
+  { title: "New Gaming Edit", desc: "Punchy short-form cut with layered sound design.", video: "/videos/gaming-edit-3.mp4" },
 ];
 
 type Rect = { top: number; left: number; width: number; height: number };
