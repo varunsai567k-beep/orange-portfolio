@@ -6,6 +6,7 @@ import { useReveal } from "@/hooks/use-reveal";
 import heroImg from "@/assets/hero-gaming.jpg";
 import showreel from "@/assets/videos/showreel.mp4.asset.json";
 import gamingEdit3 from "@/assets/videos/gaming-edit-3.mp4.asset.json";
+import reelVideo from "@/assets/videos/reel.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -207,6 +208,36 @@ function Index() {
             ))}
           </div>
 
+        </div>
+      </section>
+
+      {/* Others */}
+      <section id="others" className="pb-24 md:pb-28 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-primary font-medium text-sm tracking-widest uppercase mb-3">Others</p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight">
+              Beyond <span className="text-gradient">gaming</span>.
+            </h2>
+            <p className="mt-4 text-muted-foreground max-w-xl mx-auto">Short-form reels and experiments outside the main lineup.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            <div className="group rounded-2xl border border-border bg-surface overflow-hidden transition-all duration-500 ease-out hover:border-primary/70 hover:shadow-card hover:-translate-y-1">
+              <div className="relative overflow-hidden">
+                <video
+                  src={reelVideo.url}
+                  controls
+                  preload="metadata"
+                  playsInline
+                  className="w-full aspect-video bg-black object-cover"
+                />
+              </div>
+              <div className="p-5">
+                <h3 className="font-display font-semibold text-lg transition-colors group-hover:text-primary">Reel</h3>
+                <p className="text-sm text-muted-foreground mt-1">A quick cut reel.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
