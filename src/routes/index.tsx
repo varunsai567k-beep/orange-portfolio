@@ -219,7 +219,7 @@ function Index() {
             <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight">
               Beyond <span className="text-gradient">gaming</span>.
             </h2>
-            <p className="mt-4 text-muted-foreground max-w-xl mx-auto">Short-form reels and experiments outside the main lineup.</p>
+            <p className="mt-4 text-muted-foreground max-w-xl mx-auto">Other work outside the main gaming lineup.</p>
           </div>
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="group rounded-2xl border border-border bg-surface overflow-hidden transition-all duration-500 ease-out hover:border-primary/70 hover:shadow-card hover:-translate-y-1">
@@ -234,7 +234,7 @@ function Index() {
               </div>
               <div className="p-5">
                 <h3 className="font-display font-semibold text-lg transition-colors group-hover:text-primary">Reel</h3>
-                <p className="text-sm text-muted-foreground mt-1">A quick cut reel.</p>
+                <p className="text-sm text-muted-foreground mt-1">Opening section from a long-form edit.</p>
               </div>
             </div>
           </div>
