@@ -5,6 +5,7 @@ import { CustomCursor } from "@/components/CustomCursor";
 import { useReveal } from "@/hooks/use-reveal";
 import heroImg from "@/assets/hero-gaming.jpg";
 import showreel from "@/assets/videos/showreel.mp4.asset.json";
+import gamingEdit3 from "@/assets/videos/gaming-edit-3.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
