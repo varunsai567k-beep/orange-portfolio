@@ -149,8 +149,10 @@
 
 .cursor-spotlight {
   transition: background 0.25s ease-out;
-  mix-blend-mode: screen;
+  mix-blend-mode: multiply;
+  opacity: 0.7;
 }
+
 
 .btn-hover-pop {
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, opacity 0.2s ease-out;

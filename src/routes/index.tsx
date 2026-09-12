@@ -3,7 +3,7 @@ import { Play, Instagram, ArrowRight, X, MessageCircle, Sparkles, MessageSquare,
 import { useState, useRef, useEffect } from "react";
 import { CustomCursor } from "@/components/CustomCursor";
 import { useReveal } from "@/hooks/use-reveal";
-import heroImg from "@/assets/hero-gaming.jpg";
+import heroImg from "@/assets/hero-graffiti.jpg";
 import showreel from "@/assets/videos/showreel.mp4.asset.json";
 import gamingEdit3 from "@/assets/videos/gaming-edit-3.mp4.asset.json";
 import reelVideo from "@/assets/videos/reel.mp4.asset.json";
@@ -111,9 +111,10 @@ function Index() {
       {/* Hero */}
       <section ref={heroRef} className="relative pt-36 pb-24 md:pt-44 md:pb-32 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <img src={heroImg} alt="Gaming setup with neon lighting — Orange Edits portfolio hero" width={1280} height={800} className="ken-burns w-full h-full object-cover opacity-25" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/30" />
+          <img src={heroImg} alt="Hand-painted graffiti lines on a cream wall — Orange Edits" width={1600} height={912} className="ken-burns w-full h-full object-cover opacity-70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/80 to-background" />
         </div>
+
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 backdrop-blur px-4 py-1.5 text-xs text-muted-foreground mb-8 anim-fade-up" style={{ animationDelay: "60ms" }}>
             <span className="size-1.5 rounded-full bg-primary animate-pulse" />
