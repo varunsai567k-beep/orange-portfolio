@@ -7,6 +7,7 @@ import heroImg from "@/assets/hero-graffiti.jpg";
 import showreel from "@/assets/videos/showreel.mp4.asset.json";
 import gamingEdit3 from "@/assets/videos/gaming-edit-3.mp4.asset.json";
 import reelVideo from "@/assets/videos/reel.mp4.asset.json";
+import gamingEdit4 from "@/assets/videos/gaming-edit-4.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
