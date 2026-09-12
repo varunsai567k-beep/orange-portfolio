@@ -27,6 +27,7 @@ const works: { title: string; desc: string; youtube?: string; video?: string }[]
   { title: "Latest Gaming Edit", desc: "Newest gaming showreel — rhythm-locked cuts and custom SFX.", youtube: "dVpV_52rWm8" },
   { title: "Gaming Highlights", desc: "Recent highlight reel built for retention.", youtube: "KGoJlkDkkGk" },
   { title: "New Gaming Edit", desc: "Punchy short-form cut with layered sound design.", video: gamingEdit3.url },
+  { title: "Long-Form Gaming Edit", desc: "Full-length edit with pacing built to hold attention.", video: gamingEdit4.url },
 ];
 
 type Rect = { top: number; left: number; width: number; height: number };
