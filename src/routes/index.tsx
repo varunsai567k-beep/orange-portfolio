@@ -113,8 +113,8 @@ function Index() {
       {/* Hero */}
       <section ref={heroRef} className="relative pt-36 pb-24 md:pt-44 md:pb-32 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <img src={heroImg} alt="Hand-painted graffiti lines on a cream wall — Orange Edits" width={1600} height={912} className="ken-burns w-full h-full object-cover opacity-70" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/80 to-background" />
+          <img src={heroImg} alt="Hand-painted graffiti lines on a cream wall — Orange Edits" width={1600} height={912} className="ken-burns w-full h-full object-cover opacity-95" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/30 to-background/85" />
         </div>
 
         <div className="max-w-4xl mx-auto text-center">
