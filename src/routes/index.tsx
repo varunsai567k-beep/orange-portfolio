@@ -189,7 +189,7 @@ function Index() {
                       title={w.title}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
-                      className="w-full aspect-video bg-black transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                      className="w-full aspect-video bg-secondary transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                     />
                   ) : (
                     <video
@@ -197,7 +197,7 @@ function Index() {
                       controls
                       preload="metadata"
                       playsInline
-                      className="w-full aspect-video bg-black object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                      className="w-full aspect-video bg-secondary object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                     />
                   )}
                 </div>
@@ -230,7 +230,7 @@ function Index() {
                   controls
                   preload="metadata"
                   playsInline
-                  className="w-full aspect-video bg-black object-cover"
+                  className="w-full aspect-video bg-secondary object-cover"
                 />
               </div>
               <div className="p-5">
@@ -299,7 +299,7 @@ function Index() {
               >
                 <X className="size-4" />
               </button>
-              <video src={showreel.url} controls autoPlay className="w-full h-full rounded-xl bg-black object-contain" />
+              <video src={showreel.url} controls autoPlay className="w-full h-full rounded-xl bg-secondary object-contain" />
             </div>
           </div>
         </div>
