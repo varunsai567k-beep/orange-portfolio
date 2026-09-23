@@ -27,7 +27,6 @@ const works: { title: string; desc: string; youtube?: string; video?: string }[]
   { title: "Latest Gaming Edit", desc: "Newest gaming showreel — rhythm-locked cuts and custom SFX.", youtube: "dVpV_52rWm8" },
   { title: "Gaming Highlights", desc: "Recent highlight reel built for retention.", youtube: "KGoJlkDkkGk" },
   { title: "New Gaming Edit", desc: "Punchy short-form cut with layered sound design.", video: gamingEdit3.url },
-  { title: "Long-Form Gaming Edit", desc: "Full-length edit with pacing built to hold attention.", video: gamingEdit4.url },
 ];
 
 type Rect = { top: number; left: number; width: number; height: number };
@@ -214,17 +213,32 @@ function Index() {
         </div>
       </section>
 
-      {/* Others */}
-      <section id="others" className="pb-24 md:pb-28 px-6">
+      {/* Long Form */}
+      <section id="long-form" className="pb-24 md:pb-28 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <p className="text-primary font-medium text-sm tracking-widest uppercase mb-3">Others</p>
+            <p className="text-primary font-medium text-sm tracking-widest uppercase mb-3">Long Form</p>
             <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight">
-              Beyond <span className="text-gradient">gaming</span>.
+              Stories built to <span className="text-gradient">hold attention</span>.
             </h2>
-            <p className="mt-4 text-muted-foreground max-w-xl mx-auto">Other work outside the main gaming lineup.</p>
+            <p className="mt-4 text-muted-foreground max-w-xl mx-auto">Long-form editing with clean pacing, structure, and retention.</p>
           </div>
           <div className="grid sm:grid-cols-2 gap-6">
+            <div className="group rounded-2xl border border-border bg-surface overflow-hidden transition-all duration-500 ease-out hover:border-primary/70 hover:shadow-card hover:-translate-y-1">
+              <div className="relative overflow-hidden">
+                <video
+                  src={gamingEdit4.url}
+                  controls
+                  preload="metadata"
+                  playsInline
+                  className="w-full aspect-video bg-secondary object-cover"
+                />
+              </div>
+              <div className="p-5">
+                <h3 className="font-display font-semibold text-lg transition-colors group-hover:text-primary">Long-Form Edit</h3>
+                <p className="text-sm text-muted-foreground mt-1">Full-length edit with pacing built to hold attention.</p>
+              </div>
+            </div>
             <div className="group rounded-2xl border border-border bg-surface overflow-hidden transition-all duration-500 ease-out hover:border-primary/70 hover:shadow-card hover:-translate-y-1">
               <div className="relative overflow-hidden">
                 <video
