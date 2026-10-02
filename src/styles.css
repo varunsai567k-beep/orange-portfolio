@@ -64,14 +64,92 @@
     letter-spacing: 0;
   }
   h1, h2, h3, h4, p { letter-spacing: 0; }
-  a, button, summary { transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease; }
+  a, button, summary { transition: color 260ms ease, background-color 260ms ease, border-color 260ms ease, transform 260ms cubic-bezier(0.22, 1, 0.36, 1); }
   a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 3px;
   }
 }
 
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-enter {
+  animation: hero-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-enter-delay-1 { animation-delay: 100ms; }
+.hero-enter-delay-2 { animation-delay: 220ms; }
+
+.section-reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-child {
+  opacity: 1;
+  transform: none;
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@supports (animation-timeline: view()) {
+  .section-reveal {
+    animation: section-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 28%;
+  }
+
+  .reveal-child {
+    animation: section-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 24%;
+  }
+
+  .stagger-2 { animation-range: entry 4% entry 28%; }
+  .stagger-3 { animation-range: entry 8% entry 32%; }
+  .stagger-4 { animation-range: entry 12% entry 36%; }
+}
+
+@keyframes section-rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.work-card .video-frame {
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 400ms ease;
+}
+
+.work-card:hover .video-frame {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 44px color-mix(in oklab, var(--primary) 16%, transparent);
+}
+
+.process-step {
+  transition-property: opacity, transform, background-color, padding-left;
+}
+
+.process-step:hover {
+  padding-left: 0.75rem;
+  background-color: color-mix(in oklab, var(--background) 4%, transparent);
+}
+
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 260ms ease;
+}
+
+.faq-answer > * { overflow: hidden; }
+details[open] .faq-answer { grid-template-rows: 1fr; opacity: 1; }
+
+button:hover, a[class*="bg-primary"]:hover { transform: translateY(-2px); }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+  .hero-enter { animation: none; }
+  .section-reveal, .reveal-child { animation: none; opacity: 1; transform: none; }
 }

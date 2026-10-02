@@ -9,6 +9,15 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>(
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const revealIfVisible = () => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
+        setVisible(true);
+        return true;
+      }
+      return false;
+    };
+    if (revealIfVisible()) return;
     if (typeof IntersectionObserver === "undefined") {
       setVisible(true);
       return;
@@ -26,7 +35,13 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>(
       options
     );
     obs.observe(el);
-    return () => obs.disconnect();
+    window.addEventListener("scroll", revealIfVisible, { passive: true });
+    window.addEventListener("resize", revealIfVisible);
+    return () => {
+      obs.disconnect();
+      window.removeEventListener("scroll", revealIfVisible);
+      window.removeEventListener("resize", revealIfVisible);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

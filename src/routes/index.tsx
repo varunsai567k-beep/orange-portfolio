@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 import { ArrowDown, ArrowUpRight, Instagram, Mail, MessageCircle, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -77,12 +78,12 @@ function Index() {
 
       <section id="top" className="mx-auto grid min-h-[calc(100svh-5rem)] max-w-7xl items-center gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[1fr_0.72fr] lg:py-28">
         <div>
-          <p className="mb-7 text-sm font-bold uppercase text-primary">YouTube video editor</p>
-          <h1 className="max-w-4xl text-5xl font-black leading-[0.98] sm:text-7xl lg:text-8xl">
+          <p className="hero-enter mb-7 text-sm font-bold uppercase text-primary">YouTube video editor</p>
+          <h1 className="hero-enter hero-enter-delay-1 max-w-4xl text-5xl font-black leading-[0.98] sm:text-7xl lg:text-8xl">
             Video editing that keeps viewers watching<span className="text-primary">.</span>
           </h1>
         </div>
-        <div className="self-end lg:pb-3">
+        <div className="hero-enter hero-enter-delay-2 self-end lg:pb-3">
           <p className="max-w-xl text-lg leading-8 text-muted-foreground sm:text-xl">
             I edit YouTube videos for creators who want better retention and a consistent upload schedule.
           </p>
@@ -98,12 +99,12 @@ function Index() {
       </section>
 
       <section id="work" className="border-t border-border bg-secondary py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <Reveal className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading number="01" title="Selected work" description="Long-form first, followed by short-form edits." />
           <div className="mt-14 grid gap-x-6 gap-y-14 md:grid-cols-2">
             {work.map((item, index) => (
-              <article key={item.title} className={index === 1 ? "md:mt-20" : index === 2 ? "md:col-span-2 md:w-[calc(50%-0.75rem)]" : ""}>
-                <div className="aspect-video overflow-hidden bg-foreground">
+              <article key={item.title} className={`reveal-child work-card ${index === 0 ? "stagger-1" : index === 1 ? "stagger-2 md:mt-20" : "stagger-3 md:col-span-2 md:w-[calc(50%-0.75rem)]"}`}>
+                <div className="video-frame aspect-video overflow-hidden bg-foreground">
                   {item.youtube ? (
                     <iframe
                       src={`https://www.youtube.com/embed/${item.youtube}?modestbranding=1&rel=0`}
@@ -126,21 +127,21 @@ function Index() {
               </article>
             ))}
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <section className="border-t border-border py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <Reveal className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading number="02" title="Client words" />
           <figure className="mt-14 max-w-4xl border-l-4 border-primary py-3 pl-6 sm:pl-10">
             <blockquote className="text-3xl font-bold leading-tight sm:text-5xl">“[paste dktino's exact words]”</blockquote>
             <figcaption className="mt-7 text-sm font-semibold text-muted-foreground">— dktino, YouTube creator (3k subscribers)</figcaption>
           </figure>
-        </div>
+        </Reveal>
       </section>
 
       <section id="process" className="border-t border-border bg-foreground py-24 text-background sm:py-32">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <Reveal className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-10 lg:grid-cols-[0.65fr_1.35fr]">
             <div>
               <p className="text-sm font-bold uppercase text-primary">03 / Process</p>
@@ -148,7 +149,7 @@ function Index() {
             </div>
             <ol className="border-t border-background/20">
               {process.map((step, index) => (
-                <li key={step.title} className="grid gap-4 border-b border-background/20 py-7 sm:grid-cols-[4rem_0.6fr_1fr] sm:items-start">
+                <li key={step.title} className={`reveal-child process-step stagger-${index + 1} grid gap-4 border-b border-background/20 py-7 sm:grid-cols-[4rem_0.6fr_1fr] sm:items-start`}>
                   <span className="font-bold text-primary">0{index + 1}</span>
                   <h3 className="text-xl font-bold">{step.title}</h3>
                   <p className="leading-7 text-background/65">{step.text}</p>
@@ -157,11 +158,11 @@ function Index() {
             </ol>
           </div>
           <p className="mt-12 border-t border-background/20 pt-7 text-lg font-semibold">Pricing is custom to each project. Message me for a quote.</p>
-        </div>
+        </Reveal>
       </section>
 
       <section id="faq" className="border-t border-border py-24 sm:py-32">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.65fr_1.35fr]">
+        <Reveal className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.65fr_1.35fr]">
           <div>
             <p className="text-sm font-bold uppercase text-primary">04 / FAQ</p>
             <h2 className="mt-4 text-4xl font-black sm:text-6xl">Before we start.</h2>
@@ -172,15 +173,15 @@ function Index() {
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-bold">
                   {question}<span className="text-2xl font-normal text-primary group-open:rotate-45 transition-transform">+</span>
                 </summary>
-                <p className="max-w-2xl pt-4 leading-7 text-muted-foreground">{answer}</p>
+                <div className="faq-answer"><p className="max-w-2xl pt-4 leading-7 text-muted-foreground">{answer}</p></div>
               </details>
             ))}
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <section id="contact" className="border-t border-border bg-secondary py-24 sm:py-32">
-        <div className="mx-auto grid max-w-7xl gap-14 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr]">
+        <Reveal className="mx-auto grid max-w-7xl gap-14 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="text-sm font-bold uppercase text-primary">05 / Contact</p>
             <h2 className="mt-4 text-4xl font-black sm:text-6xl">Tell me about your next video.</h2>
@@ -196,7 +197,7 @@ function Index() {
             <label className="block text-sm font-bold">Message<Textarea name="message" required rows={6} className="mt-2 min-h-40 rounded-none bg-background" /></label>
             <Button type="submit" size="lg" className="h-13 w-full rounded-none text-base font-bold sm:w-auto">Send inquiry <Send /></Button>
           </form>
-        </div>
+        </Reveal>
       </section>
 
       <footer className="border-t border-border px-5 py-8 sm:px-8">
@@ -208,6 +209,10 @@ function Index() {
       </footer>
     </main>
   );
+}
+
+function Reveal({ children, className }: { children: ReactNode; className?: string }) {
+  return <div className={`section-reveal ${className ?? ""}`}>{children}</div>;
 }
 
 function SectionHeading({ number, title, description }: { number: string; title: string; description?: string }) {
