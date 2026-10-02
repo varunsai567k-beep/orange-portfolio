@@ -10,22 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as WorkGamingRouteImport } from './routes/work.gaming'
 import { Route as WorkAdsRouteImport } from './routes/work.ads'
+import { Route as WorkGamingRouteImport } from './routes/work.gaming'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WorkGamingRoute = WorkGamingRouteImport.update({
-  id: '/work/gaming',
-  path: '/work/gaming',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const WorkAdsRoute = WorkAdsRouteImport.update({
   id: '/work/ads',
   path: '/work/ads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkGamingRoute = WorkGamingRouteImport.update({
+  id: '/work/gaming',
+  path: '/work/gaming',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -68,18 +68,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/work/gaming': {
-      id: '/work/gaming'
-      path: '/work/gaming'
-      fullPath: '/work/gaming'
-      preLoaderRoute: typeof WorkGamingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/work/ads': {
       id: '/work/ads'
       path: '/work/ads'
       fullPath: '/work/ads'
       preLoaderRoute: typeof WorkAdsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/gaming': {
+      id: '/work/gaming'
+      path: '/work/gaming'
+      fullPath: '/work/gaming'
+      preLoaderRoute: typeof WorkGamingRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
