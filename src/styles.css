@@ -84,27 +84,38 @@
 .hero-enter-delay-2 { animation-delay: 220ms; }
 
 .section-reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 700ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.section-reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .reveal-child {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 600ms ease, transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 1;
+  transform: none;
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.is-visible .reveal-child { opacity: 1; transform: translateY(0); }
-.is-visible .stagger-1 { transition-delay: 100ms; }
-.is-visible .stagger-2 { transition-delay: 180ms; }
-.is-visible .stagger-3 { transition-delay: 260ms; }
-.is-visible .stagger-4 { transition-delay: 340ms; }
+@supports (animation-timeline: view()) {
+  .section-reveal {
+    animation: section-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 28%;
+  }
+
+  .reveal-child {
+    animation: section-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 24%;
+  }
+
+  .stagger-2 { animation-range: entry 4% entry 28%; }
+  .stagger-3 { animation-range: entry 8% entry 32%; }
+  .stagger-4 { animation-range: entry 12% entry 36%; }
+}
+
+@keyframes section-rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 .work-card .video-frame {
   transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 400ms ease;
@@ -140,5 +151,5 @@ button:hover, a[class*="bg-primary"]:hover { transform: translateY(-2px); }
   html { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
   .hero-enter { animation: none; }
-  .section-reveal, .reveal-child { opacity: 1; transform: none; }
+  .section-reveal, .reveal-child { animation: none; opacity: 1; transform: none; }
 }

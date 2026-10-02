@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import gamingEdit3 from "@/assets/videos/gaming-edit-3.mp4.asset.json";
-import { useReveal } from "@/hooks/use-reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -213,8 +212,7 @@ function Index() {
 }
 
 function Reveal({ children, className }: { children: ReactNode; className?: string }) {
-  const { ref, visible } = useReveal<HTMLDivElement>({ threshold: 0.02, rootMargin: "0px 0px -40px 0px" });
-  return <div ref={ref} className={`section-reveal ${visible ? "is-visible" : ""} ${className ?? ""}`}>{children}</div>;
+  return <div className={`section-reveal ${className ?? ""}`}>{children}</div>;
 }
 
 function SectionHeading({ number, title, description }: { number: string; title: string; description?: string }) {
