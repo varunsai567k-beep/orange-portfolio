@@ -55,7 +55,7 @@
 
 @layer base {
   * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
   body {
     margin: 0;
     background: var(--color-background);
@@ -86,70 +86,65 @@
 .section-reveal {
   opacity: 1;
   transform: none;
+  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.section-reveal[data-visible="false"] {
+  opacity: 0;
+  transform: translateY(18px);
 }
 
 .reveal-child {
   opacity: 1;
   transform: none;
-  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 650ms cubic-bezier(0.22, 1, 0.36, 1), transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@supports (animation-timeline: view()) {
-  .section-reveal {
-    animation: section-rise linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 28%;
-  }
-
-  .reveal-child {
-    animation: section-rise linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 24%;
-  }
-
-  .stagger-2 { animation-range: entry 4% entry 28%; }
-  .stagger-3 { animation-range: entry 8% entry 32%; }
-  .stagger-4 { animation-range: entry 12% entry 36%; }
+.section-reveal[data-visible="false"] .reveal-child {
+  opacity: 0;
+  transform: translateY(12px);
 }
 
-@keyframes section-rise {
-  from { opacity: 0; transform: translateY(28px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+.stagger-1 { transition-delay: 40ms; }
+.stagger-2 { transition-delay: 100ms; }
+.stagger-3 { transition-delay: 160ms; }
+.stagger-4 { transition-delay: 220ms; }
 
 .work-card .video-frame {
   transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 400ms ease;
 }
 
-.work-card:hover .video-frame {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 44px color-mix(in oklab, var(--primary) 16%, transparent);
+@media (hover: hover) and (pointer: fine) {
+  .work-card:hover .video-frame {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px color-mix(in oklab, var(--primary) 12%, transparent);
+  }
+  button:hover, a[class*="bg-primary"]:hover { transform: translateY(-1px); }
 }
 
 .process-step {
-  transition-property: opacity, transform, background-color, padding-left;
+  transition-property: opacity, transform, background-color;
 }
 
 .process-step:hover {
-  padding-left: 0.75rem;
   background-color: color-mix(in oklab, var(--background) 4%, transparent);
 }
 
-.faq-answer {
-  display: grid;
-  grid-template-rows: 0fr;
-  opacity: 0;
-  transition: grid-template-rows 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 260ms ease;
+@keyframes faq-open {
+  from { height: 0; opacity: 0; }
+  to { height: var(--radix-accordion-content-height); opacity: 1; }
 }
-
-.faq-answer > * { overflow: hidden; }
-details[open] .faq-answer { grid-template-rows: 1fr; opacity: 1; }
-
-button:hover, a[class*="bg-primary"]:hover { transform: translateY(-2px); }
+@keyframes faq-close {
+  from { height: var(--radix-accordion-content-height); opacity: 1; }
+  to { height: 0; opacity: 0; }
+}
+.portfolio-faq [data-slot], .portfolio-faq svg { transition-duration: 320ms; }
+.portfolio-faq [data-state="open"][role="region"] { animation: faq-open 360ms cubic-bezier(0.22, 1, 0.36, 1); }
+.portfolio-faq [data-state="closed"][role="region"] { animation: faq-close 300ms cubic-bezier(0.22, 1, 0.36, 1); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; transition-delay: 0ms !important; animation-duration: 0.01ms !important; animation-delay: 0ms !important; }
   .hero-enter { animation: none; }
-  .section-reveal, .reveal-child { animation: none; opacity: 1; transform: none; }
+  .section-reveal, .section-reveal[data-visible="false"], .reveal-child, .section-reveal[data-visible="false"] .reveal-child { animation: none; opacity: 1; transform: none; }
 }
