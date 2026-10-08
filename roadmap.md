@@ -7,5 +7,5 @@
 - [x] Verify desktop and mobile behavior.
 
 ## Motion refinement
-- [ ] Make entrances independent of scroll speed and remove layout-shifting hover effects.
-- [ ] Animate FAQ opening and closing, then verify navigation and reduced motion.
+- [x] Make entrances independent of scroll speed and remove layout-shifting hover effects.
+- [x] Animate FAQ opening and closing, then verify navigation and reduced motion.
