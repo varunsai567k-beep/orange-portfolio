@@ -136,7 +136,7 @@ function Index() {
         <Reveal className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading number="02" title="Client words" />
           <figure className="mt-14 max-w-4xl border-l-4 border-primary py-3 pl-6 sm:pl-10">
-            <blockquote className="text-3xl font-bold leading-tight sm:text-5xl">“[paste dktino's exact words]”</blockquote>
+            <blockquote className="text-3xl font-bold leading-tight sm:text-5xl">“It is as I said it to be.”</blockquote>
             <figcaption className="mt-7 text-sm font-semibold text-muted-foreground">— dktino, YouTube creator (3k subscribers)</figcaption>
           </figure>
         </Reveal>
