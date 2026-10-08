@@ -4,6 +4,8 @@ import { ArrowDown, ArrowUpRight, Instagram, Mail, MessageCircle, Send } from "l
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useReveal } from "@/hooks/use-reveal";
 import gamingEdit3 from "@/assets/videos/gaming-edit-3.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -167,16 +169,14 @@ function Index() {
             <p className="text-sm font-bold uppercase text-primary">04 / FAQ</p>
             <h2 className="mt-4 text-4xl font-black sm:text-6xl">Before we start.</h2>
           </div>
-          <div className="border-t border-border">
+          <Accordion type="multiple" className="portfolio-faq border-t border-border">
             {faqs.map(([question, answer]) => (
-              <details key={question} className="group border-b border-border py-6">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-bold">
-                  {question}<span className="text-2xl font-normal text-primary group-open:rotate-45 transition-transform">+</span>
-                </summary>
-                <div className="faq-answer"><p className="max-w-2xl pt-4 leading-7 text-muted-foreground">{answer}</p></div>
-              </details>
+              <AccordionItem key={question} value={question} className="border-border">
+                <AccordionTrigger className="gap-5 py-6 text-lg font-bold hover:no-underline hover:text-primary">{question}</AccordionTrigger>
+                <AccordionContent className="pb-6"><p className="max-w-2xl leading-7 text-muted-foreground">{answer}</p></AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </Reveal>
       </section>
 
@@ -212,7 +212,8 @@ function Index() {
 }
 
 function Reveal({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={`section-reveal ${className ?? ""}`}>{children}</div>;
+  const { ref, visible } = useReveal();
+  return <div ref={ref} data-visible={visible} className={`section-reveal ${className ?? ""}`}>{children}</div>;
 }
 
 function SectionHeading({ number, title, description }: { number: string; title: string; description?: string }) {
