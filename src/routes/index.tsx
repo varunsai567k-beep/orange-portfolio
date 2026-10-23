@@ -80,6 +80,9 @@ function Index() {
 
       <section id="top" className="mx-auto grid min-h-[calc(100svh-5rem)] max-w-7xl items-center gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[1fr_0.72fr] lg:py-28">
         <div>
+          <a href="https://www.instagram.com/orange_playez/" target="_blank" rel="noreferrer" className="hero-enter mb-7 inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-bold text-foreground transition-colors hover:border-primary hover:text-primary">
+            <Instagram className="h-4 w-4 text-primary" /> Instagram — @orange_playez
+          </a>
           <p className="hero-enter mb-7 text-sm font-bold uppercase text-primary">YouTube video editor</p>
           <h1 className="hero-enter hero-enter-delay-1 max-w-4xl text-5xl font-black leading-[0.98] sm:text-7xl lg:text-8xl">
             Video editing that keeps viewers watching<span className="text-primary">.</span>
