@@ -203,6 +203,9 @@ function Index() {
       <footer className="border-t border-border px-5 py-8 sm:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm sm:flex-row sm:items-center sm:justify-between">
           <p className="font-black uppercase">Orange<span className="text-primary">.</span>Edits</p>
+          <a href="https://www.instagram.com/orange_playez/" target="_blank" rel="noreferrer" className="flex items-center gap-3 font-semibold hover:text-primary">
+            <Instagram /> Instagram — @orange_playez
+          </a>
           <a href="https://wa.me/917075254541" target="_blank" rel="noreferrer" className="font-semibold hover:text-primary">WhatsApp — +91 70752 54541</a>
           <p className="text-muted-foreground">© 2026 Orange Edits</p>
         </div>
